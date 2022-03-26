@@ -5,6 +5,7 @@ date: 2022-03-26 10:55:00 +0800
 categories: "linux"
 tag: [linux, vi]
 toc: true
+comments: true
 ---
 <!-- ![Untitled](/assets/img/terminal.jpg){: width="400" height="400"} -->
 
