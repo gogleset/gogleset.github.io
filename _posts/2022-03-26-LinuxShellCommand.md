@@ -2,7 +2,7 @@
 title:  "SHELL COMMAND 명령어 모음"
 author: Jin
 date: 2022-03-26 10:55:00 +0800
-categories: "linux"
+categories: "Linux"
 tag: [linux, vi]
 toc: true
 comments: true
