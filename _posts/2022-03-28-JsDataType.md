@@ -103,4 +103,4 @@ console.log(foo.age); // -> 4
 ## 3. 두 타입의 차이
 - 기본형에는 바로 값을 그대로 할당한다는 것이고 참조형에는 값이 저장된 `주소값`을 할당(참조)한다.
 
-**[자세한 글](https://webclub.tistory.com/638)**
+[자세한 글](https://webclub.tistory.com/638)
