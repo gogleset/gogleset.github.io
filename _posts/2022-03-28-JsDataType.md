@@ -104,3 +104,57 @@ console.log(foo.age); // -> 4
 - 기본형에는 바로 값을 그대로 할당한다는 것이고 참조형에는 값이 저장된 `주소값`을 할당(참조)한다.
 
 [자세한 글](https://webclub.tistory.com/638)
+
+
+
+## 형 변환
+
+### 자동 형 변환
+
+```jsx
+console.log("9080" / 2);
+```
+- 문자열의 숫자 처럼 보이는 문자는 나눗셈에서 자동으로 숫자형으로 변환하여 계산되는데 이러한 변환을 자동 형 변환이라고 한다.
+- 좋아보이지만 에러가 났을 시 에러의 원인 점을 찾는데 애를 먹을 수 있기 때문에 항상 의도를 가지고 변환하는게 좋다.
+
+
+### 명시적 형 변환
+- 의도를 가지고 변환하는 방식
+
+
+#### 문자열 형 변환
+```jsx
+console.log(String(123)); // 123
+console.log(String(true)); // true
+console.log(String(false)); // false
+console.log(String(null)); // null
+console.log(String(undefined)); // undefined
+```
+- `String()`으로 감싸면 문자열 변환이 이루어진다.
+
+#### 숫자 형 변환
+```jsx
+console.log(Number("123")); // 123 
+console.log(Number("123가나다")); //NaN
+console.log(Number(true)); // 1
+console.log(Number(false)); // 0
+```
+- true와 false는 1과 0으로 출력한다.
+- 숫자형으로 변환할 수 없는 문자열이 섞일 때에는 NaN이 된다.
+
+
+#### Boolean 형 변환
+```jsx
+//false
+console.log(Boolean(0));
+console.log(Boolean(""));
+console.log(Boolean(null));
+console.log(Boolean(undefined));
+console.log(Boolean(NaN));
+
+
+//true (주의!)
+console.log(Boolean("0"));
+console.log(Boolean(" "));
+```
+
