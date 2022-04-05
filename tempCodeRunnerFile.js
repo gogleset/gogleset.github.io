@@ -1,40 +1,20 @@
+// file system 모듈을 불러온다.
 // const fs = require('fs');
 
-// 첫째 줄에는 테스트 케이스의 개수 C가 주어진다.
+// fs모듈의 readFileSync 함수를 통해 동기적으로 해당 경로의 파일 전체를 읽어들인다.
+// 백준에서는 '/dev/stdin' 경로에 테스트 케이스 파일이 있다.
+// 읽어드린 정보는 toString()함수를 통해 문자열로 변환하여야 사용할 수 있다.
+// 입력 받은 문자열을 split() 함수를 통해 배열화한다. (split(' '), split('\n') 등)
+// 예) 2 3 입력시, inputData = ['2', '3']
+// const inputData1 = fs.readFileSync('/dev/stdin').toString().split(' ');
 
-// 둘째 줄부터 각 테스트 케이스마다 학생의 수 N(1 ≤ N ≤ 1000, N은 정수)이 첫 수로 주어지고, 이어서 N명의 점수가 주어진다. 점수는 0보다 크거나 같고, 100보다 작거나 같은 정수이다.
+// options으로 인코딩을 string 자료형으로 넘기는 경우, toString을 할 필요없이 문자열 반환
+// const inputData2 = fs.readFileSync(0, 'utf8').split(' ');
+// const fs = require('fs');
+// const [A, B] = fs.readFileSync('/dev/stdin').toString().split('\n');
 
-// 각 케이스마다 한 줄씩 평균을 넘는 학생들의 비율을 반올림하여 소수점 셋째 자리까지 출력한다.
 
-// const fss = `5
-// 5 50 50 70 80 100
-// 7 100 95 90 80 70 60 50
-// 3 70 90 80
-// 3 70 90 81
-// 9 100 99 98 97 96 95 94 93 91`;
-// const inputData1 = fs.readFileSync('/dev/stdin').toString().split('\n');
-// const [C, ...others] = fss.toString().split("\n");
-
-// 셀프 넘버는 1949년 인도 수학자 D.R. Kaprekar가 이름 붙였다. 양의 정수 n에 대해서 d(n)을 n과 n의 각 자리수를 더하는 함수라고 정의하자. 예를 들어, d(75) = 75+7+5 = 87이다.
-
-// 양의 정수 n이 주어졌을 때, 이 수를 시작해서 n, d(n), d(d(n)), d(d(d(n))), ...과 같은 무한 수열을 만들 수 있다. 
-
-// 예를 들어, 33으로 시작한다면 다음 수는 33 + 3 + 3 = 39이고, 그 다음 수는 39 + 3 + 9 = 51, 다음 수는 51 + 5 + 1 = 57이다. 이런식으로 다음과 같은 수열을 만들 수 있다.
-
-// 33, 39, 51, 57, 69, 84, 96, 111, 114, 120, 123, 129, 141, ...
-
-// n을 d(n)의 생성자라고 한다. 위의 수열에서 33은 39의 생성자이고, 39는 51의 생성자, 51은 57의 생성자이다. 생성자가 한 개보다 많은 경우도 있다. 예를 들어, 101은 생성자가 2개(91과 100) 있다. 
-
-// 생성자가 없는 숫자를 셀프 넘버라고 한다. 100보다 작은 셀프 넘버는 총 13개가 있다. 1, 3, 5, 7, 9, 20, 31, 42, 53, 64, 75, 86, 97
-
-// 10000보다 작거나 같은 셀프 넘버를 한 줄에 하나씩 출력하는 프로그램을 작성하시오.
-
-let n = 1;
-
-function selfNumber(params) {
-    let n = params;
-    
-
-}
-
-selfNumber(n);
+const fss = `baekjoonz`;
+const input = fss.toString();
+console.log(input[8]); 
+console.log(input[8].codePointAt());
