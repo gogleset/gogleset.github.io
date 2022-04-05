@@ -286,6 +286,12 @@ console.log(newUserList);
 ### arr.join()
 
 ```jsx
+let arr = ["안녕", "나는", "철수야"];
+
+let arr2 = arr.join(" ");
+let arr3 = arr.join("-");
+console.log(arr2);//안녕 나는 철수야
+console.log(arr3);// 안녕-나는-철수야
 ```
 
 
@@ -293,6 +299,10 @@ console.log(newUserList);
 
 ### arr.split()
 ```jsx
+let str = "안녕 나는 철수야"
+
+let arr = str.split(" ");
+console.log(arr); //[ '안녕', '나는', '철수야' ]
 ```
 
 
@@ -301,28 +311,82 @@ console.log(newUserList);
 ### Array.isArray()
 
 ```jsx
-```
+let str = "안녕 나는 철수야"
+let arr = [1, 2, 3];
 
+console.log(typeof arr); //object
+console.log(Array.isArray(str));//false
+console.log(Array.isArray(arr));//true
+```
+- 자바스크립트에선 배열을 확인할 수 없기 때문에(배열은 object로 분류)
+isArray를 써서 확인해야한다.
 
 ## 배열 정렬
 
 ### arr.sort()
 
 ```jsx
+let arr = [1, 5, 4, 2, 3];
+
+arr.sort();
+console.log(arr); //[1,2,3,4,5]
+
+let arr2 = [27, 8, 5, 13];
+arr2.sort();
+console.log(arr2) //[ 13, 27, 5, 8 ]
+
+
+let arr3 = ["banana", "camel", "apple"]
+console.log(arr3.sort());
+// [ 'apple', 'banana', 'camel' ]
 ```
-- sort함수는 배열을 정렬할때 문자열로 취급한다.
+- sort 함수는 배열을 정렬할때 문자열로 취급하여 숫자가 두자릿수 이상일때는 원치 않게 동작한다.
 
 ###### 제대로 된 배열 정렬
 ```jsx
+let arr = [27, 8, 5, 13];
+arr.sort((a, b) => a - b);
+console.log(arr); //[ 5, 8, 13, 27 ]
 ```
+- sort 함수는 정렬하려면 새로운 정렬법을 사용해야한다.
 
 
 ## arr.reduce()
 
-### 배열을 가산하고 새로운 배열 리턴
+### 배열을 가산하고 새로운 값 리턴
 
 ```jsx
+let arr = [1, 2, 3, 4, 5];
+
+const result = arr.reduce((prev, next) =>{
+    return prev + next;
+}, 0)
+//0은 prev의 초기값이다.
+
+console.log(result); //15
 ```
+- ((누적계산값, 현재값) => {return 계산값})
+
+
+###### or
+```jsx
+let userList = [
+    {name: "John", age: 21},
+    {name: "Doe", age: 22},
+    {name: "D", age: 17},
+]
+
+let result = userList.reduce((prev, cur) => {
+    // 만약 배열의 나이 값이 19세 이상이라면
+    if(cur.age >= 19){
+        prev.push(cur.name)
+    } 
+    return prev;
+}, []);
+//prev는 배열도 가능하다/
+console.log(result);
+```
+- 리듀스 함수는 다양하게 활용 가능하다
 
 
 
