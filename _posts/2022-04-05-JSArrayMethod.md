@@ -321,6 +321,7 @@ console.log(Array.isArray(arr));//true
 - 자바스크립트에선 배열을 확인할 수 없기 때문에(배열은 object로 분류)
 isArray를 써서 확인해야한다.
 
+---
 ## 배열 정렬
 
 ### arr.sort()
@@ -351,9 +352,10 @@ console.log(arr); //[ 5, 8, 13, 27 ]
 - sort 함수는 정렬하려면 새로운 정렬법을 사용해야한다.
 
 
-## arr.reduce()
 
-### 배열을 가산하고 새로운 값 리턴
+## 배열을 가산하고 새로운 값 리턴
+### arr.reduce()
+
 
 ```jsx
 let arr = [1, 2, 3, 4, 5];
