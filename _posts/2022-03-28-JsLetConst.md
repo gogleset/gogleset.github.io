@@ -215,10 +215,11 @@ showNum();
 
 
 ```jsx
+console.log(num); //ReferenceError
 let num = 30;
 
 function showNum(){
-    console.log(num); //TDZ 발생 referenceError
+    console.log(num); //TDZ 발생 ReferenceError
 
     let num = 30;
 }
