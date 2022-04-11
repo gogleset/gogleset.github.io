@@ -186,6 +186,7 @@ console.log(name)
 
 
 ## 호이스팅 동작
+- 변수 선언이 어디에 있든 상관없이 다른 코드보다 먼저 실행되는 특징을 호이스팅(hoisting)이라 한다.
 - 스코프 내부 어디서든 변수선언은 최상위에 선언된 것처럼 행동한다.
 - var, let, const 모두 호이스팅이 된다. 다만 스코프 별로 차이가 있다.
 
@@ -193,8 +194,8 @@ console.log(name)
 ### var의 호이스팅
 ```jsx
 //이런식으로 선언되기 전에 사용 가능하다.
-var name;
 console.log(name); //undefined
+var name;
 name = 'mike'; //할당
 
 var num = 30;
