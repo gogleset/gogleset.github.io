@@ -196,8 +196,19 @@ console.log(name)
 var name;
 console.log(name); //undefined
 name = 'mike'; //할당
+
+var num = 30;
+
+function showNum(){
+    console.log(num); //undefined
+
+    var num = 30;
+}
+showNum();
 ```
 - var는 선언과 초기화가 같이 진행되기 때문에 Error가 발생하지 않는다.
+
+
 ### let과 const의 호이스팅
 
 
@@ -206,7 +217,7 @@ name = 'mike'; //할당
 let num = 30;
 
 function showNum(){
-    console.log(num); //TDZ 발생
+    console.log(num); //TDZ 발생 referenceError
 
     let num = 30;
 }
