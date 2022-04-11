@@ -12,6 +12,7 @@ comments: true
 
 ## .length
 ### 문자열의 길이 알아내기
+
 ```jsx
 let a = "akskdk";
 
@@ -28,7 +29,6 @@ console.log(b.length); //6
 
 
 ## .toUpperCase() / .toLowerCase()
-
 ### 대문자 / 소문자 형식 변환
 
 ```jsx
@@ -42,7 +42,6 @@ console.log(b.toLowerCase()); //asndjasd
 
 
 ## .indexOf(params)
-
 ### 문자열 찾기
 ```jsx
 let b = "myschool and sky"
