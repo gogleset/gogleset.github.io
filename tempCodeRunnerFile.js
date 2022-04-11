@@ -1,34 +1,32 @@
 // const fs = require('fs');
 // const array = fs.readFileSync('/dev/stdin').toString().split('\n');
 
-// 그룹 단어란 단어에 존재하는 모든 문자에 대해서,
-// 각 문자가 연속해서 나타나는 경우만을 말한다. 예를 들면,
-// ccazzzzbb는 c, a, z, b가 모두 연속해서 나타나고,
-// kin도 k, i, n이 연속해서 나타나기 때문에 그룹 단어이지만,
-// aabbbccb는 b가 떨어져서 나타나기 때문에 그룹 단어가 아니다.
+// 월드전자는 노트북을 제조하고 판매하는 회사이다. 노트북 판매 대수에 상관없이 매년 임대료, 재산세, 보험료, 급여 등 A만원의 고정 비용이 들며, 한 대의 노트북을 생산하는 데에는 재료비와 인건비 등 총 B만원의 가변 비용이 든다고 한다.
 
-// 단어 N개를 입력으로 받아 그룹 단어의 개수를 출력하는 프로그램을 작성하시오.
-function makeCounter() {
-    let privateNum = 0;
+// 예를 들어 A=1,000, B=70이라고 하자. 이 경우 노트북을 한 대 생산하는 데는 총 1,070만원이 들며, 열 대 생산하는 데는 총 1,700만원이 든다.
 
-    function change(num) {
-        privateNum += num;
-    }
-    return {
-        plus: function() {
-            change(1);
-        },
-        minus: function() {
-            change(-1);
-        },
-        value: function() {
-            return privateNum;
-        }
-    };   
-};
+// 노트북 가격이 C만원으로 책정되었다고 한다. 일반적으로 생산 대수를 늘려 가다 보면 어느 순간 총 수입(판매비용)이 총 비용(=고정비용+가변비용)보다 많아지게 된다. 최초로 총 수입이 총 비용보다 많아져 이익이 발생하는 지점을 손익분기점(BREAK-EVEN POINT)이라고 한다.
 
-let counter = makeCounter();
-counter.plus(); //1
-counter.plus(); //2
-counter.minus(); //1
-console.log(counter.value()); //1
+// A, B, C가 주어졌을 때, 손익분기점을 구하는 프로그램을 작성하시오.
+
+
+
+const fs = `21000000 9 10`
+const input = fs.split(" ");
+
+// 고정
+let a = input[0];
+// 가변
+let b = input[1];
+// 판매가격
+let c = input[2];
+// 총 비용
+
+// 손익분기점 고정비용 / (판매가격 - 가변가격) + 1
+let point = Math.floor(a / (c - b)) + 1;
+(point <= 0) ? point = -1 : point;
+
+console.log(point);
+
+
+
