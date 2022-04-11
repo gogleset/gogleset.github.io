@@ -8,10 +8,16 @@
 // aabbbccb는 b가 떨어져서 나타나기 때문에 그룹 단어가 아니다.
 
 // 단어 N개를 입력으로 받아 그룹 단어의 개수를 출력하는 프로그램을 작성하시오.
-let user = {name: 'Jin', age: 30};
-let {name, age, gender} = user;
+let user = {name: "Jin"};
+let info = {mbti: "esfj", age: 30};
+let skills = ["JS", "React"];
+let lang = ["korean", "English"];
 
 
-let {name, age, gender = 'male'} = user;
+let userInfo = {
+    ...user,
+    ...info,
+    skills: [...skills, ...lang],
+}
 
-console.log(name, age, gender); //Jin 30 
+console.log(userInfo);
