@@ -8,13 +8,10 @@
 // aabbbccb는 b가 떨어져서 나타나기 때문에 그룹 단어가 아니다.
 
 // 단어 N개를 입력으로 받아 그룹 단어의 개수를 출력하는 프로그램을 작성하시오.
-console.log(num); //ReferenceError
-let num = 30;
+let user = {name: 'Jin', age: 30};
+let {name, age, gender} = user;
 
-function showNum(){
-    console.log(num); //TDZ 발생 ReferenceError
 
-    let num = 30;
-}
-showNum();
+let {name, age, gender = 'male'} = user;
 
+console.log(name, age, gender); //Jin 30 
