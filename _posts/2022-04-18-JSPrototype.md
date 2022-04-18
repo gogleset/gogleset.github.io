@@ -1,7 +1,7 @@
 ---
 title:  "Javascript의 Prototype과 상속"
 author: Jin
-date: 2022-04-11 10:55:00 +0800
+date: 2022-04-18 10:55:00 +0800
 categories: "Javascript(ES6)"
 tag: [this, prototype, 프로토타입, 상속]
 toc: true
