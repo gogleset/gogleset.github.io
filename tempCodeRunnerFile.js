@@ -27,17 +27,33 @@
 //     }
 // }
 // console.log(a[0]);
-// const car = {
-//   wheels: 4,
-//   drive: function () {
-//     console.log("..drive");
-//   },
-// };
 
-// const Bmw = function (color) {
-//   const c = color;
+class Car {
+  constructor(color) {
+    this.color = color;
+    this.wheel = 4;
+  }
 
-//   this.getColor = function () {
-//     console.log(c);
-//   };
-// }; //생성자 함수 생성
+  drive() {
+    console.log("Drive");
+  }
+  stop() {
+    console.log("Stop");
+  }
+}
+
+class Bmw extends Car {
+  parking() {
+    console.log("parking");
+  }
+  stop() {
+    super.stop();
+    console.log("Bmw stop");
+  }
+}
+
+const m1 = new Bmw("Black");
+
+console.log(m1.stop());
+// stop
+// Bmw stop
