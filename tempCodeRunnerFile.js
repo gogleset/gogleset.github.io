@@ -28,32 +28,43 @@
 // }
 // console.log(a[0]);
 
-class Car {
-  constructor(color) {
-    this.color = color;
-    this.wheel = 4;
-  }
+const f1 = () => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res("1번 완료");
+    }, 1000);
+  });
+};
 
-  drive() {
-    console.log("Drive");
-  }
-  stop() {
-    console.log("Stop");
-  }
-}
+const f2 = (message) => {
+  console.log(message);
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      rej("2번완료");
+    }, 2000);
+  });
+};
 
-class Bmw extends Car {
-  parking() {
-    console.log("parking");
-  }
-  stop() {
-    super.stop();
-    console.log("Bmw stop");
-  }
-}
-
-const m1 = new Bmw("Black");
-
-console.log(m1.stop());
-// stop
-// Bmw stop
+const f3 = (message) => {
+  console.log(message);
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res("3번 완료");
+    }, 3000);
+  });
+};
+// console.time("pr");
+// f1()
+//   .then((res) => f2(res))
+//   .then((res) => f3(res))
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err))
+//   .finally(() => {
+//     console.timeEnd("pr");
+//   });
+console.log("시작");
+console.time("pr.all");
+Promise.race([f1(), f2(), f3()]).then((res) => {
+    console.log(res);
+    console.timeEnd("pr.all");
+})
