@@ -23,6 +23,8 @@ netfily에 배포한 페이지에선 애초에 AJAX 통신을 https로 통신한
 ![jscode](../assets/img/1_3.png)
    - http:를 지우고 ://으로 하면 통신프로토콜 규정없이 통신이 가능하다고해서 해봤지만 failed​
 2. 코드 배포시 문제, 자동으로 https로 통신
+
+
 ![netfily](../assets/img/1_2.png)
 ![netfily2](../assets/img/1_1.png)
 
