@@ -1,7 +1,7 @@
 ---
 title:  "client와 server 간 http, https 통신에 대하여"
 author: Jin
-date: 2022-03-26 10:55:00 +0800
+date: 2022-05-04 10:55:00 +0800
 categories: "ERROR"
 tag: [ssl, https, https]
 toc: true
@@ -9,13 +9,14 @@ comments: true
 ---
 
 # 문제점
-- 내가 배포한 [페이지](https://regal-squirrel-5c1e14.netlify.app/) (netfliy배포)는
+- 내가 배포한 [페이지](https://regal-squirrel-5c1e14.netlify.app/) (netfily배포)는
 https 프로토콜을 기본값으로 준수한다.
 하지만 AWS 서버에 있는 API의 통신 프로토콜은 http 통신 프로토콜을 사용한다.
 
 
 - localhost:3000 <- (리액트 서버) 에서는 http 프로토콜을 사용하여 서버 리소스를 불러들일 수 있지만, 내가 배포한 사이트는 https 보안 규정을 준수하여 http 사이트의 리소스를 차단한다.
 
+---
 ###### 구체적 문제사항
 netfily에 배포한 페이지에선 애초에 AJAX 통신을 https로 통신한다.(서버 주소를 http로 설정을 하여도 자동으로 https:// 로 통신)
 1. js코드 단에서 http:// 로 통신 (localhost는 잘 받아짐)
