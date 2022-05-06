@@ -55,22 +55,32 @@ add(1, "2"); //error발생
 # TS 타입 선언
 
 1. boolean
+
+
 ```tsx
 let isTrue: boolean = true;
 ```
 
-2. undefined
+
+
+1. undefined
 
 ```tsx
 let unde: undefined = undefined;
 ```
 
+
+
 3. null
+
+
 ```tsx
 let nill: null = null;
 ```
 
-4. number
+
+
+1. number
 
 ```tsx
 let num: number = 12;
@@ -89,11 +99,15 @@ let myName: string = `choi`; // ES6 템플릿 문자열
 let hello: string = `Hi, my name is ${ myName }.`; //
 ```
 
+
+
 6. object
 
 ```tsx
 const obj: object = {};
 ```
+
+
 7. array
 
 ```tsx
@@ -101,6 +115,8 @@ let list1: any = [1, 'two', true];
 let list2: number = [1, 10, 100];
 let list3: array<number> = [1, 2, 3]; 
 ```
+
+
 
 8. tuple
 
@@ -114,7 +130,11 @@ tuple.push(true); // Error
 - 고정된 요소수 만큼의 타입을 미리 선언후 배열을 표현
 
 
+
+
 9. enum 
+
+
 ```tsx
 enum Color1 {Red, Green, Blue};
 let c1: Color1 = Color1.Green;
@@ -134,7 +154,7 @@ console.log(c3); // 4.
 - enum은 숫자값 집합에 이름을 지정한 것이다.
 - enum은 특정값만 입력할 수 있게 강제하고 싶을 때 또 그 값들이 뭔가 공통점이 있을때 사용한다.
 
-10. any
+10.  any
 
 ```tsx
 let notSure: any = 4;
@@ -146,6 +166,8 @@ var 키워드로 선언한 변수와 같이 어떤 타입의 값이라도 할당
 
 
 11. void
+
+
 ```tsx
 function printHi(): void {
   console.log("Hi");
@@ -154,6 +176,8 @@ function printHi(): void {
 - 일반적으로 함수에서 반환값이 없을 경우 사용한다.
 
 12. never
+
+
 
 ```tsx
 // 항상 오류 발생
@@ -171,4 +195,6 @@ function infinite(): never {
   while ( true ) { infinite(); }
 }
 ```
+
+
 - 일반적으로 함수의 리턴 타입으로 사용된다. 함수의 리턴 타입으로 never가 사용될 경우, 항상 오류를 출력하거나 리턴 값을 절대로 내보내지 않음을 의미한다.
