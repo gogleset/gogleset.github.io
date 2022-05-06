@@ -63,7 +63,7 @@ let isTrue: boolean = true;
 
 
 
-1. undefined
+2. undefined
 
 ```tsx
 let unde: undefined = undefined;
@@ -80,7 +80,7 @@ let nill: null = null;
 
 
 
-1. number
+4. number
 
 ```tsx
 let num: number = 12;
