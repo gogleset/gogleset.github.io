@@ -1,9 +1,9 @@
 ---
-title:  "TypeScript의 타입 선언"
+title:  "TypeScript의 primitive 타입 선언"
 author: Jin
 date: 2022-04-11 10:55:00 +0800
 categories: "TypeScript"
-tag: [변수, 함수, 선언, 정적 타이핑]
+tag: [변수, 함수, 선언, 정적 타이핑, primitive]
 toc: true
 comments: true
 ---
@@ -54,7 +54,7 @@ add(1, "2"); //error발생
 
 # TS 타입 선언
 
-1. boolean
+### boolean
 
 
 ```tsx
@@ -63,7 +63,7 @@ let isTrue: boolean = true;
 
 
 
-2. undefined
+### undefined
 
 ```tsx
 let unde: undefined = undefined;
@@ -71,7 +71,7 @@ let unde: undefined = undefined;
 
 
 
-3. null
+### null
 
 
 ```tsx
@@ -80,7 +80,7 @@ let nill: null = null;
 
 
 
-4. number
+### number
 
 ```tsx
 let num: number = 12;
@@ -90,7 +90,7 @@ let octal: number = 0o744;
 ```
 
 
-5. string
+### string
 
 ```tsx
 let color: string = "black";
@@ -101,24 +101,28 @@ let hello: string = `Hi, my name is ${ myName }.`; //
 
 
 
-6. object
+### object
 
 ```tsx
 const obj: object = {};
+let myInfo : { age : number } = { age : 20 }
 ```
+- Object도 프로퍼티마다 객체 지정이 가능하다.
 
 
-7. array
+### array
 
 ```tsx
 let list1: any = [1, 'two', true];
 let list2: number = [1, 10, 100];
-let list3: array<number> = [1, 2, 3]; 
+let list3: array<number> = [1, 2, 3];
+let list4: string[] = ['kim', 'choi']; 
 ```
+- 배열 할당 시 배열의 타입을 지정해 줄 수 있다.
 
 
 
-8. tuple
+### tuple
 
 ```tsx
 let tuple: [string, number];
@@ -132,7 +136,7 @@ tuple.push(true); // Error
 
 
 
-9. enum 
+### enum 
 
 
 ```tsx
@@ -154,7 +158,7 @@ console.log(c3); // 4.
 - enum은 숫자값 집합에 이름을 지정한 것이다.
 - enum은 특정값만 입력할 수 있게 강제하고 싶을 때 또 그 값들이 뭔가 공통점이 있을때 사용한다.
 
-10.  any
+### any
 
 ```tsx
 let notSure: any = 4;
@@ -165,7 +169,7 @@ notSure = false;
 var 키워드로 선언한 변수와 같이 어떤 타입의 값이라도 할당할 수 있다.
 
 
-11. void
+### void
 
 
 ```tsx
@@ -175,7 +179,7 @@ function printHi(): void {
 ```
 - 일반적으로 함수에서 반환값이 없을 경우 사용한다.
 
-12. never
+###  never
 
 
 
