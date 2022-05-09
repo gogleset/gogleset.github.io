@@ -29,7 +29,7 @@ add('hello', 'world'); // hello world
 ##### TS를 쓴다면?
 
   
-```tsx
+```ts
 function add(num1:number, num2:number) {
     console.log(num1 + num2);
 }
@@ -57,7 +57,7 @@ add(1, "2"); //error발생
 ### boolean
 
 
-```tsx
+```ts
 let isTrue: boolean = true;
 ```
 
@@ -65,7 +65,7 @@ let isTrue: boolean = true;
 
 ### undefined
 
-```tsx
+```ts
 let unde: undefined = undefined;
 ```
 
@@ -74,7 +74,7 @@ let unde: undefined = undefined;
 ### null
 
 
-```tsx
+```ts
 let nill: null = null;
 ```
 
@@ -82,7 +82,7 @@ let nill: null = null;
 
 ### number
 
-```tsx
+```ts
 let num: number = 12;
 let hex: number = 0xf00d;
 let binary: number = 0b1010;
@@ -92,7 +92,7 @@ let octal: number = 0o744;
 
 ### string
 
-```tsx
+```ts
 let color: string = "black";
 color = 'red';
 let myName: string = `choi`; // ES6 템플릿 문자열
@@ -103,7 +103,7 @@ let hello: string = `Hi, my name is ${ myName }.`; //
 
 ### object
 
-```tsx
+```ts
 const obj: object = {};
 let myInfo : { age : number } = { age : 20 }
 ```
@@ -112,7 +112,7 @@ let myInfo : { age : number } = { age : 20 }
 
 ### array
 
-```tsx
+```ts
 let list1: any = [1, 'two', true];
 let list2: number = [1, 10, 100];
 let list3: array<number> = [1, 2, 3];
@@ -124,7 +124,7 @@ let list4: string[] = ['kim', 'choi'];
 
 ### tuple
 
-```tsx
+```ts
 let tuple: [string, number];
 tuple = ['hello', 10]; // OK
 tuple = [10, 'hello']; // Error
@@ -139,7 +139,7 @@ tuple.push(true); // Error
 ### enum 
 
 
-```tsx
+```ts
 enum Color1 {Red, Green, Blue};
 let c1: Color1 = Color1.Green;
 
@@ -160,7 +160,7 @@ console.log(c3); // 4.
 
 ### any
 
-```tsx
+```ts
 let notSure: any = 4;
 notSure = '문자열일지도 몰라';
 notSure = false; 
@@ -172,7 +172,7 @@ var 키워드로 선언한 변수와 같이 어떤 타입의 값이라도 할당
 ### void
 
 
-```tsx
+```ts
 function printHi(): void {
   console.log("Hi");
 }
@@ -183,7 +183,7 @@ function printHi(): void {
 
 
 
-```tsx
+```ts
 // 항상 오류 발생
 function invalid(message:string): never {
   throw new Error(message);
