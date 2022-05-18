@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .opening {
+            background-color: red
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box open">
+        this is a box
+    </div>
+
+    <script>
+        const box = document.querySelector('.box');
+        box.addEventListener('click', function () {
+            console.log(this);
+            this.classList.toggle("opening");
+            setTimeout(() => {
+                // setTimeout자체는 window의 객체이기 때문에 function이 안먹힘
+                console.log(this);
+                this.classList.toggle("opening")
+            }, 1000);
+        }) 
+    </script>
+</body>
+
+</html>
