@@ -1,5 +1,5 @@
 ---
-title:  "TypeScript의 primitive 타입 선언"
+title:  "TypeScript의 데이터 타입"
 author: Jin
 date: 2022-04-11 10:55:00 +0800
 categories: "TypeScript"
