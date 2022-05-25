@@ -9,12 +9,16 @@ comments: true
 ---
 
 # TypeScript로 DOM 제어하기
+
+
 ```ts
 let 제목 = document.querySelector("#title");
 제목.innerHTML = "반가워요";//error
 ```
 
 ###### 왜 에러?
+
+
 - 제목이 없을 경우 null로 할당될것이고, 할당이 제대로 된다면 html object가 올 것이기 때문에 type이  Element | null인 유니온 타입이라 타입을 확정시켜줘야한다.
 
 
