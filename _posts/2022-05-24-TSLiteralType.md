@@ -164,6 +164,51 @@ add(datas.name);
 - object 속성들에 모두 readonly를 붙여준다.(변경하면 에러)
 - object 자료를 완전히 잠궈놓고 싶으면 as const!
 
+---
+
+## 함수에서 Type Alias
+
+
+```ts
+type 함수타입 = (a: string) => number;
+```
+- function type alias는 **화살표함수**로만 지정 가능하다.
+- 리턴타입은 화살표 축약형으로 바로쓰기
+
+--- 
+
+```ts
+let 함수: 함수타입 = function (a) {
+    return 10;
+}
+```
+- 함수 type alias를 부착하려면 함수 표현식만 써야한다.
+
+
+### object 안 메서드는 어떻게 type을 지정할까?
+```ts
+type member = {
+    name: string,
+    plusOne: (a: number) => number,
+    changeName: () => void
+}
+```
+- 이런식으로 타입지정이 가능하다.
+
+--- 
+
+
+
+```ts
+let user: member = {
+    name: "kim",
+    plusOne(a: number): number {
+        return a + 1
+    },
+    changeName: (): void => {}
+}
+```
+- 지정한 타입 쓰기
 
 
 

@@ -11,7 +11,7 @@ comments: true
 # TypeScript로 DOM 제어하기
 ```ts
 let 제목 = document.querySelector("#title");
-제목.innerHTML = "반가워요";
+제목.innerHTML = "반가워요";//error
 ```
 
 ###### 왜 에러?
