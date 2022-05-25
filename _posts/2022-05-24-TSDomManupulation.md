@@ -12,25 +12,25 @@ comments: true
 
 
 ```ts
-let 제목 = document.querySelector("#title");
-제목.innerHTML = "반가워요";//error
+let title = document.querySelector("#title");
+title.innerHTML = "반가워요";//error
 ```
 
 ###### 왜 에러?
 
 
-- 제목이 없을 경우 null로 할당될것이고, 할당이 제대로 된다면 html object가 올 것이기 때문에 type이  Element | null인 유니온 타입이라 타입을 확정시켜줘야한다.
+- title이 없을 경우 null로 할당될것이고, 할당이 제대로 된다면 html object가 올 것이기 때문에 type이  Element | null인 유니온 타입이라 타입을 확정시켜줘야한다.
 
 
 ---
 
 
 ```ts
-if (제목 !== null) {
-제목.innerHTML = "반가워요";
+if (title !== null) {
+title.innerHTML = "반가워요";
 }
 ```
-- 제목.innerHtml은 유니온타입이기 때문에 Type Narrowing 을 해주어야 한다.
+- title.innerHtml은 유니온타입이기 때문에 Type Narrowing 을 해주어야 한다.
 
 ---
 
@@ -39,8 +39,8 @@ if (제목 !== null) {
 1. instanceof 연산자
 
 ```ts
-if(제목 instanceof Element){
-    제목.innerHTML = '반가워요';
+if(title instanceof Element){
+    title.innerHTML = '반가워요';
 }
 ```
 - 가장 많이 쓰는 문법
@@ -50,8 +50,8 @@ if(제목 instanceof Element){
 2. as 기법
 
 ```ts
-let 제목 = document.querySelector("#title") as Element;
-제목.innerHTML = "반가워요"
+let title = document.querySelector("#title") as Element;
+title.innerHTML = "반가워요"
 ```
 - as 키워드로 타입 덮어쓰기
 - as 왼쪽에 있는 요소는 오른쪽에 있는 타입으로 바꿔주기
@@ -60,9 +60,9 @@ let 제목 = document.querySelector("#title") as Element;
 3.optioanl chaining 기법
 
 ```ts
-let 제목 = document.querySelector("#title");
-if(제목?.innerHTML != undefined){
-    제목.innerHTML = '반가워요'
+let title = document.querySelector("#title");
+if(title?.innerHTML != undefined){
+    title.innerHTML = '반가워요'
 }
 ```
 
@@ -74,14 +74,14 @@ if(제목?.innerHTML != undefined){
 
 ## link 태그를 바꿔보자
 ```ts
-let 링크 = document.querySelector(".link");
-링크.href = 'https://kakao.com';
+let link = document.querySelector(".link");
+link.href = 'https://kakao.com';
 ``` 
 - error가 뜬다 왜냐면 union 타입이기때문에 Narrowing을 해주어야 한다.
 
 ```ts
-if (링크 instanceof Element) {
-    링크.href = 'https://kakao.com'; //또 에러뜸 Element형식에 href 속성이 없다고...
+if (link instanceof Element) {
+    link.href = 'https://kakao.com'; //또 에러뜸 Element형식에 href 속성이 없다고...
 }
 ```
 
@@ -91,8 +91,8 @@ if (링크 instanceof Element) {
 
 
 ```ts
-if (링크 instanceof HTMLAnchorElement) {
-    링크.href = 'https://kakao.com';
+if (link instanceof HTMLAnchorElement) {
+    link.href = 'https://kakao.com';
 }
 ```
 - Element 타입에서 HTMLButtonElement 타입, HTMLHeadingElement 타입, HTMLAnchorElement 타입등등 상속을 받는다. object의 타입 정의가 잘 되어있다.
@@ -101,11 +101,11 @@ if (링크 instanceof HTMLAnchorElement) {
 ## Button Event를 붙여보자
 
 ```ts
-let 버튼  = document.querySelector("#button");
+let button  = document.querySelector("#button");
 
-버튼?.addEventListener('click', () => {
+button?.addEventListener('click', () => {
 
 });
 ```
 - addEventListner도 Narrowing 해줘야 하는데 `?.` optioanl chaining으로 Narrowing이 가능하다.
-- 버튼에 addEvntListener가 가능하지 않다면 undefined를 리턴하고, 아니라면 실행하라는 구문
+- button에 addEvntListener가 가능하지 않다면 undefined를 리턴하고, 아니라면 실행하라는 구문
