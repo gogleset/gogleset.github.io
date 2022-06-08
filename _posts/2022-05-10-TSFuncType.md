@@ -43,6 +43,8 @@ function foo2 (x :number, y?: number): void {
 - void는 함수의 리턴문이 있을 경우 체크해준다. 함수의 리턴값이 없을 때 사용한다.
 - 자바스크립트와 다른 점은 타입 지정된 파라미터는 필수이다.
 - 파라미터가 옵션일 경우 **파라미터변수?:타입**
-- 변수?: number는 변수:number | **undefined**와 같다.(중요)
+
+
+- 변수? : number는 변수:number `|` **undefined**와 같다.(중요)
 
 
