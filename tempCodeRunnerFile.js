@@ -7,11 +7,13 @@
 
 // 아파트에 비어있는 집은 없고 모든 거주민들이 이 계약 조건을 지키고 왔다고 가정했을 때, 주어지는 양의 정수 k와 n에 대해 k층에 n호에는 몇 명이 살고 있는지 출력하라. 단, 아파트에는 0층부터 있고 각층에는 1호부터 있으며, 0층의 i호에는 i명이 산다.
 
-
-const fs = `2
-1
-3
-2
-3`;
-const input = fs.toString().split('\n');
+const fs = `2541`;
+const input = fs.toString()
 console.log(input);
+
+function getSeougiYear(year) {
+    let getYear = parseInt(year) - 543;
+    return getYear;
+}
+
+console.log(getSeougiYear(input));
