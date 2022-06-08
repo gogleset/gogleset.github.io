@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="ko-KR" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="Javascript의 객체와 메소드" /><meta name="author" content="Jin" /><meta property="og:locale" content="ko_KR" /><meta name="description" content="객체(Object) 객체란 이름(name)과 값(value)으로 구성된 프로퍼티(property)의 정렬되지 않은 집합이다." /><meta property="og:description" content="객체(Object) 객체란 이름(name)과 값(value)으로 구성된 프로퍼티(property)의 정렬되지 않은 집합이다." /><link rel="canonical" href="https://gogleset.github.io/posts/JsObject/" /><meta property="og:url" content="https://gogleset.github.io/posts/JsObject/" /><meta property="og:site_name" content="gogleset.log" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-03-29T11:55:00+09:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Javascript의 객체와 메소드" /><meta name="twitter:site" content="@twitter_username" /><meta name="twitter:creator" content="@Jin" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jin"},"dateModified":"2022-04-11T10:29:37+09:00","datePublished":"2022-03-29T11:55:00+09:00","description":"객체(Object) 객체란 이름(name)과 값(value)으로 구성된 프로퍼티(property)의 정렬되지 않은 집합이다.","headline":"Javascript의 객체와 메소드","mainEntityOfPage":{"@type":"WebPage","@id":"https://gogleset.github.io/posts/JsObject/"},"url":"https://gogleset.github.io/posts/JsObject/"}</script><title>Javascript의 객체와 메소드 | gogleset.log</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="gogleset.log"><meta name="application-name" content="gogleset.log"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" alt="avatar" class="mx-auto"> <img src="/assets/img/1.png" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">gogleset.log</a></div><div class="site-subtitle font-italic">JS, WEB, CS</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>홈</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>카테고리</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>태그</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>아카이브</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>정보</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <button class="mode-toggle btn" aria-label="Switch Mode"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/gogleset" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['choij2494','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> 홈 </a> </span> <span>Javascript의 객체와 메소드</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> 포스트</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="검색..."> </span> <span id="search-cancel" >취소</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>Javascript의 객체와 메소드</h1><div class="post-meta text-muted"><div> By <em> Jin </em></div><div class="d-flex"><div> <span> 게시 <em class="timeago" data-ts="1648522500" data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll" > 2022-03-29 </em> </span> <span> 업데이트 <em class="timeago" data-ts="1649640577" data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll" > 2022-04-11 </em> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1770 단어"> <em>9 분</em>읽는 시간</span></div></div></div><div class="post-content"><h1 id="객체object">객체(Object)</h1><ul><li>객체란 이름(name)과 값(value)으로 구성된 프로퍼티(property)의 정렬되지 않은 집합이다.</ul><h3 id="객체-선언과-할당"><span class="mr-2">객체 선언과 할당</span><a href="#객체-선언과-할당" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">key1</span><span class="p">:</span> <span class="dl">"</span><span class="s2">value1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">key2</span><span class="p">:</span> <span class="dl">"</span><span class="s2">value2</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>일반 변수 선언과 똑같고, {}안에 키와 값을 넣는다.<h3 id="프로퍼티-접근"><span class="mr-2">프로퍼티 접근</span><a href="#프로퍼티-접근" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3></ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">key1</span>
+<span class="nx">object</span><span class="p">[</span><span class="dl">'</span><span class="s1">key2</span><span class="dl">'</span><span class="p">]</span>
+</pre></table></code></div></div><ul><li>객체명.키<li>객체명[‘키’]</ul><h3 id="프로퍼티-추가"><span class="mr-2">프로퍼티 추가</span><a href="#프로퍼티-추가" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="nx">object</span><span class="p">.</span><span class="nx">key3</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">value3</span><span class="dl">"</span>
+<span class="nx">object</span><span class="p">[</span><span class="dl">'</span><span class="s1">key4</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">value4</span><span class="dl">"</span>
+</pre></table></code></div></div><ul><li>객체 접근 방식 + 값을 넣어주면 객체 추가<h3 id="프로퍼티-삭제"><span class="mr-2">프로퍼티 삭제</span><a href="#프로퍼티-삭제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3></ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">delete</span> <span class="nx">object</span><span class="p">.</span><span class="nx">key4</span>
+</pre></table></code></div></div><ul><li>delete 예약어로 객체 삭제</ul><h3 id="프로퍼티-존재-여부-확인"><span class="mr-2">프로퍼티 존재 여부 확인</span><a href="#프로퍼티-존재-여부-확인" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">key1</span><span class="p">:</span> <span class="dl">"</span><span class="s2">value1</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">key2</span><span class="p">:</span> <span class="dl">"</span><span class="s2">value2</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">key1</span><span class="dl">'</span> <span class="k">in</span> <span class="nx">object</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">key3</span><span class="dl">'</span> <span class="k">in</span> <span class="nx">object</span><span class="p">);</span> <span class="c1">// false</span>
+</pre></table></code></div></div><ul><li>in 예약어로 프로퍼티의 존재를 boolean type으로 확인할 수 있다.</ul><hr /><h2 id="단축-프로퍼티"><span class="mr-2">단축 프로퍼티</span><a href="#단축-프로퍼티" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">clark</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">33</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="nx">age</span><span class="p">,</span>
+    <span class="na">gender</span><span class="p">:</span> <span class="dl">'</span><span class="s1">male</span><span class="dl">'</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>이렇게 객체를 할당해도 되지만 단축 프로퍼티를 활용해 객체에 값을 할당하면 코드를 읽기 쉽게 할 수 있다.</ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">clark</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">33</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="p">,</span>
+    <span class="nx">age</span><span class="p">,</span>
+    <span class="na">gender</span><span class="p">:</span> <span class="dl">'</span><span class="s1">male</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>단축 프로퍼티를 활용하면 더욱 깔끔한 코드를 작성할 수 있다.</ul><hr /><h2 id="computed-property"><span class="mr-2">Computed Property</span><a href="#computed-property" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><ul><li>계산된 프로퍼티</ul><h3 id="computed-property-사용하기"><span class="mr-2">Computed Property 사용하기</span><a href="#computed-property-사용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><ol><li>객체 키 동적 할당<div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">n</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">Jin</span><span class="dl">'</span><span class="p">,</span>
+ <span class="na">age</span> <span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span> <span class="c1">//{ name: 'Jin', age: 30 }</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">//Jin</span>
+</pre></table></code></div></div><li>프로퍼티에 계산식 추가하면</ol><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">random</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">[</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="p">[</span><span class="dl">"</span><span class="s2">안녕</span><span class="dl">"</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">하세요</span><span class="dl">"</span><span class="p">]:</span> <span class="dl">"</span><span class="s2">인사</span><span class="dl">"</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">random</span><span class="p">);</span> <span class="c1">// { '5': 5, '안녕하세요': '인사' }</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">random</span><span class="p">[</span><span class="dl">'</span><span class="s1">5</span><span class="dl">'</span><span class="p">]);</span> <span class="c1">// 5</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">random</span><span class="p">.</span><span class="nx">안녕하세요</span><span class="p">);</span> <span class="c1">// 인사</span>
+</pre></table></code></div></div><hr /><h2 id="메소드"><span class="mr-2">메소드</span><a href="#메소드" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><ul><li>객체 프로퍼티로 할당된 함수</ul><ol><li>함수 선언문으로 객체의 메소드 정의<div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jin</span><span class="dl">"</span><span class="p">,</span>
+ <span class="na">age</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>
+ <span class="nx">run</span><span class="p">(){</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> Run!!`</span><span class="p">)</span>
+ <span class="p">}</span>
+ <span class="c1">// run : function(){}으로 선언 해도됨.</span>
+<span class="p">}</span>
+</pre></table></code></div></div><li>화살표 함수로 메소드 정의<div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jin</span><span class="dl">"</span><span class="p">,</span>
+ <span class="na">age</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>
+ <span class="na">run</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> Run!!`</span><span class="p">)</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>함수 선언문으로 실행을 하면 실행이 되지만, 화살표 함수로 메소드를 실행하면 오류가 난다.<li>화살표 함수 내부에서 this를 사용하면, 그 this는 외부에서 값을 가져온다.<li>화살표 함수는 일반 함수와는 달리 자신만의 this를 가지지 않는다.<li>객체 안 메서드를 작성할땐 화살표 함수는 지양하자.<h2 id="유용한-메소드내장-객체모음"><span class="mr-2">유용한 메소드(내장 객체)모음</span><a href="#유용한-메소드내장-객체모음" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="1-객체-복제"><span class="mr-2">1. 객체 복제</span><a href="#1-객체-복제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><h4 id="objectassign를-사용하여-깊은-복사를-하는-경우"><span class="mr-2">Object.assign()를 사용하여 깊은 복사를 하는 경우</span><a href="#objectassign를-사용하여-깊은-복사를-하는-경우" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4></h4></ul></ol><p><code class="language-plaintext highlighter-rouge">object.assing(target, ...sources)</code></p><h6 id="얕은-복사">얕은 복사</h6><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jin</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
+<span class="p">}</span>
+<span class="c1">// 얕은복사</span>
+<span class="kd">const</span> <span class="nx">clonePerson</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
+<span class="c1">// 복사한 객체가 같은 메모리 주소를 보고있다.</span>
+<span class="nx">clonePerson</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">// 복사한 객체의 이름을 바꾸면 원본의 데이터도 바뀌는 것을 볼 수 있다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// John </span>
+</pre></table></code></div></div><ul><li>그냥 복사하면 <strong>얕은</strong> 복사로 참조 메모리 주소를 복사하기 때문에 복사한 clonePerson을 바꾸면 원본 데이터가 바뀐다.<h6 id="깊은-복사">깊은 복사</h6></ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jin</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
+<span class="p">}</span>
+<span class="c1">// 깊은 복사</span>
+<span class="kd">const</span> <span class="nx">clonePerson</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">person</span><span class="p">);</span>
+
+<span class="nx">clonePerson</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span> <span class="c1">// { name: 'Jin', age: 25 }</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">clonePerson</span><span class="p">);</span> <span class="c1">// { name: 'John', age: 25 }</span>
+</pre></table></code></div></div><ul><li>Object.assign()의 첫번째 파라미터는 타겟, 두번째 파라미터는 소스 오브젝트(복사할 객체)<li>소스 오브젝트는 타겟 오브젝트에 병합된다.<li>만약 타겟 오브젝트와 병합할 소스 오브젝트의 키가 같다면 덮어쓰기가 된다.</ul><h4 id="객체-다중-복제"><span class="mr-2">객체 다중 복제</span><a href="#객체-다중-복제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4></h4><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span>
+<span class="p">}</span>
+<span class="kd">const</span> <span class="nx">info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">15</span>
+<span class="p">}</span>
+<span class="kd">const</span> <span class="nx">info1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">gender</span><span class="p">:</span> <span class="dl">"</span><span class="s2">male</span><span class="dl">"</span>
+<span class="p">}</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span><span class="nx">info</span><span class="p">,</span><span class="nx">info1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span><span class="c1">// { name: 'John', age: 15, gender: 'male' }</span>
+</pre></table></code></div></div><ul><li>객체를 다중복제할때 첫번째 파라미터에 할당된 객체로 병합된다.</ul><hr /><h3 id="2-객체-키-배열-반환"><span class="mr-2">2. 객체 키 배열 반환</span><a href="#2-객체-키-배열-반환" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jin</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span>
+<span class="c1">// ['name', 'age']</span>
+</pre></table></code></div></div><ul><li>객체에 있는 키를 배열로 반환해준다.</ul><hr /><h3 id="3-객체-값-배열-반환"><span class="mr-2">3. 객체 값 배열 반환</span><a href="#3-객체-값-배열-반환" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jin</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span>
+<span class="c1">// [ 'Jin', 25 ]</span>
+</pre></table></code></div></div><ul><li>객체에 있는 값을 배열로 반환해준다.</ul><h3 id="4-객체-키값-배열-반환"><span class="mr-2">4. 객체 키/값 배열 반환</span><a href="#4-객체-키값-배열-반환" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jin</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span>
+<span class="c1">// [ [ 'name', 'Jin' ], [ 'age', 25 ] ]</span>
+</pre></table></code></div></div><ul><li>객체에 있는 키, 값을 배열로 반환해준다.</ul><h3 id="5-키값-배열을-객체로"><span class="mr-2">5. 키/값 배열을 객체로</span><a href="#5-키값-배열을-객체로" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Jin</span><span class="dl">'</span> <span class="p">],</span> 
+    <span class="p">[</span> <span class="dl">'</span><span class="s1">age</span><span class="dl">'</span><span class="p">,</span> <span class="mi">25</span> <span class="p">]</span>
+<span class="p">];</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span><span class="nx">array</span><span class="p">));</span>
+<span class="c1">// { name: 'Jin', age: 25 }</span>
+</pre></table></code></div></div><ul><li>키, 값이 있는 어떤 배열을 객체로 병합해준다.</ul><h2 id="symbol"><span class="mr-2">Symbol</span><a href="#symbol" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><hr /><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span> <span class="c1">// false</span>
+</pre></table></code></div></div><ul><li>유일성을 보장한다.<li>동일한 Symbol객체를 참조하고 있는데도 같지 않다고 뜬다.</ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">);</span> 
+<span class="kd">const</span> <span class="nx">id1</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">id1</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span> <span class="o">==</span> <span class="nx">id1</span><span class="p">);</span> <span class="c1">//false</span>
+
+<span class="c1">// 설명 값 얻기</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span><span class="p">.</span><span class="nx">description</span><span class="p">);</span> <span class="c1">//id</span>
+</pre></table></code></div></div><ul><li>설명도 붙힐 수 있다.<li>이 경우도 유일성이 보장된다.</ul><h3 id="유일성이-보장된-프로퍼티-만들기"><span class="mr-2">유일성이 보장된 프로퍼티 만들기</span><a href="#유일성이-보장된-프로퍼티-만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">);</span> 
+<span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jin</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="p">[</span><span class="nx">id</span><span class="p">]:</span> <span class="dl">'</span><span class="s1">myid</span><span class="dl">'</span>
+<span class="p">}</span> 
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span> <span class="c1">//{ name: 'Jin', age: 25, [Symbol(id)]: 'myid' }</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">[</span><span class="nx">key</span><span class="p">]);</span>
+<span class="p">}</span> <span class="c1">// 심볼은 출력되지 않는다.</span>
+</pre></table></code></div></div><ul><li>Object 메소드를 쓰면 심볼을 넘기고 실행하게 된다.</ul><h4 id="심볼은-특정-객체에-원본데이터를-건드리지-않고-속성-추가-가능"><span class="mr-2">심볼은 특정 객체에 원본데이터를 건드리지 않고 속성 추가 가능</span><a href="#심볼은-특정-객체에-원본데이터를-건드리지-않고-속성-추가-가능" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4></h4><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">person</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">myid</span><span class="dl">'</span><span class="p">;</span>
+</pre></table></code></div></div><ul><li>다른 사람이 만든 객체에 자기 자신이 만든 객체를 덮어쓸 수도 있고, 또 Object 메소드나 for in으로 객체 순환을 하여 쓸 수도 있기 때문에 이렇게 다른곳에 영향을 주지 않기 위해 Symbol 객체를 쓴다.</ul><h3 id="전역-심볼"><span class="mr-2">전역 심볼</span><a href="#전역-심볼" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">.</span><span class="k">for</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">id1</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">.</span><span class="k">for</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">id1</span><span class="p">);</span> <span class="c1">// true</span>
+
+<span class="c1">// 심볼의 키 값 얻기</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Symbol</span><span class="p">.</span><span class="nx">keyFor</span><span class="p">(</span><span class="nx">id1</span><span class="p">));</span>
+
+
+</pre></table></code></div></div><ul><li>이름이 같으면 같은 심볼 객체를 가르킨다.<li>하나의 심볼만 보장된다.<li>Symbol 함수는 매번 다른 Symbol 값을 생성하지만, Symbol.for 메소드는 하나를 생성한 뒤 키를 통해 같은 Symbol을 공유한다.</ul><h3 id="숨겨진-symbol-키-보는법"><span class="mr-2">숨겨진 Symbol 키 보는법</span><a href="#숨겨진-symbol-키-보는법" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">age</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">Symbol</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">person</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">myid</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="c1">// Symbol만 볼 수 있다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertySymbols</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span>
+
+<span class="c1">// 모든 키를 다 볼 수 있다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Reflect</span><span class="p">.</span><span class="nx">ownKeys</span><span class="p">(</span><span class="nx">person</span><span class="p">));</span>
+</pre></table></code></div></div><ul><li>Object.getOwnPropertySymbols 심볼 키 출력<li>Reflect.ownKeys 메소드는 모든 키 출력</ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/javascript-es6/'>Javascript(ES6)</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/%EA%B0%9D%EC%B2%B4/" class="post-tag no-text-decoration" >객체</a> <a href="/tags/%EB%A9%94%EC%86%8C%EB%93%9C/" class="post-tag no-text-decoration" >메소드</a> <a href="/tags/%ED%82%A4/" class="post-tag no-text-decoration" >키</a> <a href="/tags/%EB%B0%B8%EB%A5%98/" class="post-tag no-text-decoration" >밸류</a> <a href="/tags/%EC%8B%AC%EB%B3%BC/" class="post-tag no-text-decoration" >심볼</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> 이 기사는 저작권자의 <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> 라이센스를 따릅니다.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">공유하기</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Javascript%EC%9D%98+%EA%B0%9D%EC%B2%B4%EC%99%80+%EB%A9%94%EC%86%8C%EB%93%9C+-+gogleset.log&url=https%3A%2F%2Fgogleset.github.io%2Fposts%2FJsObject%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Javascript%EC%9D%98+%EA%B0%9D%EC%B2%B4%EC%99%80+%EB%A9%94%EC%86%8C%EB%93%9C+-+gogleset.log&u=https%3A%2F%2Fgogleset.github.io%2Fposts%2FJsObject%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fgogleset.github.io%2Fposts%2FJsObject%2F&text=Javascript%EC%9D%98+%EA%B0%9D%EC%B2%B4%EC%99%80+%EB%A9%94%EC%86%8C%EB%93%9C+-+gogleset.log" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="링크 복사하기" data-title-succeed="링크가 복사되었습니다!"> </i> </span></div></div></div><script src="https://utteranc.es/client.js" repo="gogleset/gogleset.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async> </script></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">최근 업데이트</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/TSDomManupulation/">TypeScript Dom Manupulation</a><li><a href="/posts/TSFuncType/">TypeScript에서 함수의 타입 지정하기</a><li><a href="/posts/TSLiteralType/">TypeScript Type Alias와 Literal 타입</a><li><a href="/posts/TSTypeDeclaration/">TypeScript의 데이터 타입</a><li><a href="/posts/TSVoid/">TypeScript 타입 확정시키기</a></ul></div><div id="access-tags"><div class="panel-heading">인기 태그</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">타입스크립트</a> <a class="post-tag" href="/tags/%EB%B0%B1%EC%A4%80/">백준</a> <a class="post-tag" href="/tags/%EB%A9%94%EC%86%8C%EB%93%9C/">메소드</a> <a class="post-tag" href="/tags/%ED%95%A8%EC%88%98/">함수</a> <a class="post-tag" href="/tags/ts/">ts</a> <a class="post-tag" href="/tags/%EB%82%B4%EC%9E%A5%EA%B0%9D%EC%B2%B4/">내장객체</a> <a class="post-tag" href="/tags/class/">class</a> <a class="post-tag" href="/tags/cs/">CS</a> <a class="post-tag" href="/tags/interface/">interface</a> <a class="post-tag" href="/tags/this/">this</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">바로가기</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>관련된 글</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/JSMathMethod/"><div class="card-body"> <em class="timeago small" data-ts="1648695300" > 2022-03-31 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Javascript의 Math 메소드</h3><div class="text-muted small"><p> 유용한 Math 메소드 모음 .toString() 10진수를 2진수, 16진수로 변환하기 1 2 3 4 let num = 10; console.log(num.toString()); //문자열 10진수로 변환 -&amp;gt; &quot;10&quot; console.log(num.toString(2)); //문자열 2진수로 변환 -&amp;gt; &quot;1010&quot; 1 2 3 let ...</p></div></div></a></div><div class="card"> <a href="/posts/JSStringMethod/"><div class="card-body"> <em class="timeago small" data-ts="1649040900" > 2022-04-04 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Javascript의 String 메소드</h3><div class="text-muted small"><p> 유용한 String 메소드 모음 .length 문자열의 길이 알아내기 1 2 3 4 5 6 let a = &quot;akskdk&quot;; let b = [1,23,12,2,114,1]; console.log(a.length); //6 console.log(b.length); //6 .length는 배열의 길이뿐만 아니라 문자열(도 사실 배열)의 길이도...</p></div></div></a></div><div class="card"> <a href="/posts/JSArrayMethod/"><div class="card-body"> <em class="timeago small" data-ts="1649127300" > 2022-04-05 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Javascript의 Array 메소드</h3><div class="text-muted small"><p> 유용한 Array 메소드 모음 arr.push() 배열의 뒤부터 삽입 1 2 3 4 5 let array = []; array.push(&quot;안녕&quot;); // [&#39;안녕&#39;] let array2 = array.push(11); // 2 뒤에서부터 넣어준다. push로 할당된 배열을 변수에 할당하면 그 배열의 길이가 할당된다.(array) 그리...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/BJ10809/" class="btn btn-outline-primary" prompt="이전 글"><p>백준 10809번 사칙연산</p></a> <a href="/posts/BJ2884/" class="btn btn-outline-primary" prompt="다음 글"><p>백준 2884번 알람시계</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">인기 태그</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">타입스크립트</a> <a class="post-tag" href="/tags/%EB%B0%B1%EC%A4%80/">백준</a> <a class="post-tag" href="/tags/%EB%A9%94%EC%86%8C%EB%93%9C/">메소드</a> <a class="post-tag" href="/tags/%ED%95%A8%EC%88%98/">함수</a> <a class="post-tag" href="/tags/ts/">ts</a> <a class="post-tag" href="/tags/%EB%82%B4%EC%9E%A5%EA%B0%9D%EC%B2%B4/">내장객체</a> <a class="post-tag" href="/tags/class/">class</a> <a class="post-tag" href="/tags/cs/">CS</a> <a class="post-tag" href="/tags/interface/">interface</a> <a class="post-tag" href="/tags/this/">this</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">검색 결과가 없습니다.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/ko.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-15WBLD65N0"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-15WBLD65N0'); }); </script>

@@ -1,0 +1,361 @@
+<!DOCTYPE html><html lang="ko-KR" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="Javascript의 Array 메소드" /><meta name="author" content="Jin" /><meta property="og:locale" content="ko_KR" /><meta name="description" content="유용한 Array 메소드 모음" /><meta property="og:description" content="유용한 Array 메소드 모음" /><link rel="canonical" href="https://gogleset.github.io/posts/JSArrayMethod/" /><meta property="og:url" content="https://gogleset.github.io/posts/JSArrayMethod/" /><meta property="og:site_name" content="gogleset.log" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-04-05T11:55:00+09:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Javascript의 Array 메소드" /><meta name="twitter:site" content="@twitter_username" /><meta name="twitter:creator" content="@Jin" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jin"},"dateModified":"2022-04-11T10:29:37+09:00","datePublished":"2022-04-05T11:55:00+09:00","description":"유용한 Array 메소드 모음","headline":"Javascript의 Array 메소드","mainEntityOfPage":{"@type":"WebPage","@id":"https://gogleset.github.io/posts/JSArrayMethod/"},"url":"https://gogleset.github.io/posts/JSArrayMethod/"}</script><title>Javascript의 Array 메소드 | gogleset.log</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="gogleset.log"><meta name="application-name" content="gogleset.log"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" alt="avatar" class="mx-auto"> <img src="/assets/img/1.png" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">gogleset.log</a></div><div class="site-subtitle font-italic">JS, WEB, CS</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>홈</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>카테고리</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>태그</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>아카이브</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>정보</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <button class="mode-toggle btn" aria-label="Switch Mode"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/gogleset" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['choij2494','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> 홈 </a> </span> <span>Javascript의 Array 메소드</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> 포스트</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="검색..."> </span> <span id="search-cancel" >취소</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>Javascript의 Array 메소드</h1><div class="post-meta text-muted"><div> By <em> Jin </em></div><div class="d-flex"><div> <span> 게시 <em class="timeago" data-ts="1649127300" data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll" > 2022-04-05 </em> </span> <span> 업데이트 <em class="timeago" data-ts="1649640577" data-toggle="tooltip" data-placement="bottom" data-tooltip-df="llll" > 2022-04-11 </em> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1738 단어"> <em>9 분</em>읽는 시간</span></div></div></div><div class="post-content"><h1 id="유용한-array-메소드-모음">유용한 Array 메소드 모음</h1><h2 id="arrpush"><span class="mr-2">arr.push()</span><a href="#arrpush" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="배열의-뒤부터-삽입"><span class="mr-2">배열의 뒤부터 삽입</span><a href="#배열의-뒤부터-삽입" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">안녕</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// ['안녕']</span>
+
+<span class="kd">let</span> <span class="nx">array2</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span> <span class="c1">// 2</span>
+</pre></table></code></div></div><ul><li>뒤에서부터 넣어준다.<li>push로 할당된 배열을 변수에 할당하면 그 배열의 길이가 할당된다.(array) 그리고 push는 원래대로 동작하여 배열에 넣어준다.</ul><h2 id="arrpop"><span class="mr-2">arr.pop()</span><a href="#arrpop" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="배열의-뒤부터-삭제"><span class="mr-2">배열의 뒤부터 삭제</span><a href="#배열의-뒤부터-삭제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+
+<span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+<span class="c1">//[ 1, 2, 3 ]</span>
+
+<span class="kd">let</span> <span class="nx">array2</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array2</span><span class="p">);</span> <span class="c1">// 3</span>
+</pre></table></code></div></div><ul><li>뒤에서부터 삭제한다.<li>pop한 배열을 할당하면 지운 객체가 할당된다.</ul><h2 id="배열의-앞에-삽입"><span class="mr-2">배열의 앞에 삽입</span><a href="#배열의-앞에-삽입" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrunshift"><span class="mr-2">arr.unshift()</span><a href="#arrunshift" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="nx">array</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="dl">"</span><span class="s2">안녕</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// ['안녕']</span>
+
+<span class="kd">let</span> <span class="nx">array2</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span> <span class="c1">// 2</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span> <span class="c1">// [ 11, '안녕' ]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array2</span><span class="p">);</span> <span class="c1">// 2</span>
+</pre></table></code></div></div><ul><li>앞에서부터 배열에 추가<li>unshift를 한 객체를 변수에 할당하면 배열의 길이가 할당된다.</ul><h2 id="배열의-앞부터-삭제"><span class="mr-2">배열의 앞부터 삭제</span><a href="#배열의-앞부터-삭제" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrshift"><span class="mr-2">arr.shift()</span><a href="#arrshift" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+
+<span class="nx">array</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+<span class="c1">//[ 1, 2, 3 ]</span>
+
+<span class="kd">let</span> <span class="nx">array2</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array2</span><span class="p">);</span> <span class="c1">//2</span>
+</pre></table></code></div></div><ul><li>배열의 앞부터 삭제한다.<li>shift를 한 객체를 변수에 할당하면 배열의 길이가 할당된다.</ul><h2 id="특정요소-지우기n부터-m개"><span class="mr-2">특정요소 지우기(n부터 m개)</span><a href="#특정요소-지우기n부터-m개" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrsplicenm"><span class="mr-2">arr.splice(n,m)</span><a href="#arrsplicenm" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span> <span class="c1">//[ 5, 10 ]</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr2</span><span class="p">);</span> <span class="c1">//[ 1, 2, 4 ]</span>
+</pre></table></code></div></div><ul><li>n부터 m개까지 지우기<li>자른 배열을 다시 할당도 가능 (arr2)</ul><h2 id="n번째부터-m개를-지우고-그-자리에-배열추가"><span class="mr-2">n번째부터 m개를 지우고, 그 자리에 배열추가</span><a href="#n번째부터-m개를-지우고-그-자리에-배열추가" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrsplicenmx"><span class="mr-2">arr.splice(n,m,x)</span><a href="#arrsplicenmx" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="dl">"</span><span class="s2">하이</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">히히</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span> <span class="c1">//[ '하이', '히히', 5, 10 ]</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr2</span><span class="p">);</span> <span class="c1">//[ 1, 2, 4 ]</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="dl">"</span><span class="s2">안녕</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//지우지 않고 n번째 자리 뒤에 배열에 추가</span>
+</pre></table></code></div></div><ul><li>할당될 객체엔 새로운 배열에 추가할 요소까지 들어가진 않는다.(arr2)<li>splice(n, 0, x)는 지우지않고 n번째 인덱스 뒤에 배열 추가</ul><h2 id="n부터-m까지-반환과-깊은-복사"><span class="mr-2">n부터 m까지 반환과 깊은 복사</span><a href="#n부터-m까지-반환과-깊은-복사" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrslicen-m"><span class="mr-2">arr.slice(n, m)</span><a href="#arrslicen-m" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">//0 부터 3까지</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr2</span><span class="p">);</span> <span class="c1">//[ 1, 2, 4 ]</span>
+</pre></table></code></div></div><ul><li>n부터 m까지 자르기<li>실제 원본 배열에 영향을 미치지 않는다.</ul><h4 id="arrslice"><span class="mr-2">arr.slice()</span><a href="#arrslice" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4></h4><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span> <span class="c1">//배열 깊은 복사</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// arr을 얕은복사했다면 </span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr2</span><span class="p">);</span> <span class="c1">//여기도 끝에 2가 나와야한다. 하지만 나오지않는다.</span>
+</pre></table></code></div></div><ul><li>slice()는배열의 깊은 복사가 가능하다.</ul><hr /><h2 id="합쳐서-새로운-배열-반환"><span class="mr-2">합쳐서 새로운 배열 반환</span><a href="#합쳐서-새로운-배열-반환" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrconcatarr2-arr3"><span class="mr-2">arr.concat(arr2, arr3…);</span><a href="#arrconcatarr2-arr3" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span> <span class="c1">//[1, 2, 3, 4]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]);</span> <span class="c1">// [1, 2, 3, 4, 5, 6, 7, 8]</span>
+</pre></table></code></div></div><ul><li>배열 합치기</ul><h2 id="배열-반복"><span class="mr-2">배열 반복</span><a href="#배열-반복" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrforeachfn"><span class="mr-2">arr.forEach(fn)</span><a href="#arrforeachfn" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">ma</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">sib</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ajq</span><span class="dl">'</span><span class="p">];</span>
+
+<span class="nx">users</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span> <span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+    <span class="cm">/**
+     *  ma 0
+        sib 1
+        ajq 2
+     */</span>
+<span class="p">})</span>
+</pre></table></code></div></div><ul><li>배열 반복</ul><h2 id="값이-있는-곳의-주소를-반환"><span class="mr-2">값이 있는 곳의 주소를 반환</span><a href="#값이-있는-곳의-주소를-반환" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrindexof--arrlastindexof"><span class="mr-2">arr.indexOf() / arr.lastIndexOf()</span><a href="#arrindexof--arrlastindexof" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">//2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> <span class="c1">// 첫번째 파라미터는 찾을 객체, 두번째 파라미터는 n번째부터</span>
+
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">//2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span> <span class="c1">// 첫번째 파라미터는 찾을 객체, 두번째 파라미터는 n번째부터 </span>
+</pre></table></code></div></div><ul><li>주의 : lastIndexOf는 탐색 방향이 indexOf의 반대방향이다.</ul><h2 id="값이-포함하는지-확인"><span class="mr-2">값이 포함하는지 확인</span><a href="#값이-포함하는지-확인" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrincludes"><span class="mr-2">arr.includes()</span><a href="#arrincludes" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">// true</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="c1">// false</span>
+</pre></table></code></div></div><ul><li>값이 포함하는지 확인한 후 boolean 값 리턴</ul><h2 id="보다-복잡한-연산이-가능한-찾기-방법"><span class="mr-2">보다 복잡한 연산이 가능한 찾기 방법</span><a href="#보다-복잡한-연산이-가능한-찾기-방법" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrfindfn--arrfindindexfn"><span class="mr-2">arr.find(fn) / arr.findIndex(fn)</span><a href="#arrfindfn--arrfindindexfn" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">44</span><span class="p">];</span>
+
+<span class="kd">const</span> <span class="nx">found</span> <span class="o">=</span> <span class="nx">array1</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="nx">element</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">notFound</span> <span class="o">=</span> <span class="nx">array1</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="nx">element</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">found</span><span class="p">);</span> <span class="c1">//12</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notFound</span><span class="p">);</span> <span class="c1">//undefined</span>
+</pre></table></code></div></div><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">foundIndex</span> <span class="o">=</span> <span class="nx">array1</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="nx">element</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">notFoundIndex</span> <span class="o">=</span> <span class="nx">array1</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="nx">element</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foundIndex</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notFoundIndex</span><span class="p">);</span>
+</pre></table></code></div></div><ul><li>주의할 점 : 찾으면 true값만 반환한다. 만약 없다면 undefined.<li>findIndex는 없다면 -1을 반환</ul><h2 id="만족하는-모든-요소를-배열로-반환"><span class="mr-2">만족하는 모든 요소를 배열로 반환</span><a href="#만족하는-모든-요소를-배열로-반환" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrfilterfn"><span class="mr-2">arr.filter(fn)</span><a href="#arrfilterfn" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">//[ 2, 4 ]</span>
+</pre></table></code></div></div><ul><li>만족하는 모든 요소를 배열로 반환한다.</ul><h2 id="역순으로-정렬"><span class="mr-2">역순으로 정렬</span><a href="#역순으로-정렬" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrreverse"><span class="mr-2">arr.reverse()</span><a href="#arrreverse" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">reverse</span><span class="p">());</span> <span class="c1">//[5, 4, 3, 2, 1 ]</span>
+</pre></table></code></div></div><h2 id="함수를-받아-특정기능을-실행하고-새로운-배열을-반환받기"><span class="mr-2">함수를 받아 특정기능을 실행하고 새로운 배열을 반환받기</span><a href="#함수를-받아-특정기능을-실행하고-새로운-배열을-반환받기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrmapfn"><span class="mr-2">arr.map(fn)</span><a href="#arrmapfn" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">userList</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mike</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">28</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">wise</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aiase</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
+<span class="p">];</span>
+
+<span class="kd">let</span> <span class="nx">newUserList</span> <span class="o">=</span> <span class="nx">userList</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">user</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">user</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">id</span><span class="p">:</span> <span class="nx">index</span><span class="p">,</span>
+        <span class="na">isAdult</span><span class="p">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">age</span> <span class="o">&gt;</span> <span class="mi">19</span><span class="p">,</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newUserList</span><span class="p">);</span>
+<span class="cm">/**
+ * [
+  { name: 'mike', age: 28, id: 0, isAdult: true },
+  { name: 'wise', age: 30, id: 1, isAdult: true },
+  { name: 'aiase', age: 40, id: 2, isAdult: true }
+]
+ */</span> 
+</pre></table></code></div></div><ul><li>map은 탐색, 배열만들기 등등 할 수 있는 기능이 많다.</ul><h2 id="배열을-합쳐-문자열로-반환"><span class="mr-2">배열을 합쳐 문자열로 반환</span><a href="#배열을-합쳐-문자열로-반환" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrjoin"><span class="mr-2">arr.join()</span><a href="#arrjoin" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">안녕</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">나는</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">철수야</span><span class="dl">"</span><span class="p">];</span>
+
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">arr3</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2">-</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr2</span><span class="p">);</span><span class="c1">//안녕 나는 철수야</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr3</span><span class="p">);</span><span class="c1">// 안녕-나는-철수야</span>
+</pre></table></code></div></div><h2 id="문자열을-잘라-배열로-반환"><span class="mr-2">문자열을 잘라 배열로 반환</span><a href="#문자열을-잘라-배열로-반환" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrsplit"><span class="mr-2">arr.split()</span><a href="#arrsplit" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">안녕 나는 철수야</span><span class="dl">"</span>
+
+<span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span> <span class="c1">//[ '안녕', '나는', '철수야' ]</span>
+</pre></table></code></div></div><h2 id="배열인지-확인"><span class="mr-2">배열인지 확인</span><a href="#배열인지-확인" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrayisarray"><span class="mr-2">Array.isArray()</span><a href="#arrayisarray" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">안녕 나는 철수야</span><span class="dl">"</span>
+<span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">arr</span><span class="p">);</span> <span class="c1">//object</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">str</span><span class="p">));</span><span class="c1">//false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">));</span><span class="c1">//true</span>
+</pre></table></code></div></div><ul><li>자바스크립트에선 배열을 확인할 수 없기 때문에(배열은 object로 분류) isArray를 써서 확인해야한다.</ul><hr /><h2 id="배열-정렬"><span class="mr-2">배열 정렬</span><a href="#배열-정렬" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrsort"><span class="mr-2">arr.sort()</span><a href="#arrsort" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span> <span class="c1">//[1,2,3,4,5]</span>
+
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">];</span>
+<span class="nx">arr2</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr2</span><span class="p">)</span> <span class="c1">//[ 13, 27, 5, 8 ]</span>
+
+
+<span class="kd">let</span> <span class="nx">arr3</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">banana</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">camel</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">apple</span><span class="dl">"</span><span class="p">]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr3</span><span class="p">.</span><span class="nx">sort</span><span class="p">());</span>
+<span class="c1">// [ 'apple', 'banana', 'camel' ]</span>
+</pre></table></code></div></div><ul><li>sort 함수는 배열을 정렬할때 문자열로 취급하여 숫자가 두자릿수 이상일때는 원치 않게 동작한다.</ul><h6 id="제대로-된-배열-정렬">제대로 된 배열 정렬</h6><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">];</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span> <span class="c1">//[ 5, 8, 13, 27 ]</span>
+</pre></table></code></div></div><ul><li>sort 함수는 정렬하려면 새로운 정렬법을 사용해야한다.</ul><h2 id="배열을-가산하고-새로운-값-리턴"><span class="mr-2">배열을 가산하고 새로운 값 리턴</span><a href="#배열을-가산하고-새로운-값-리턴" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2></h2><h3 id="arrreduce"><span class="mr-2">arr.reduce()</span><a href="#arrreduce" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3></h3><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span><span class="p">{</span>
+    <span class="k">return</span> <span class="nx">prev</span> <span class="o">+</span> <span class="nx">next</span><span class="p">;</span>
+<span class="p">},</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1">//0은 prev의 초기값이다.</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">//15</span>
+</pre></table></code></div></div><ul><li>((누적계산값, 현재값) =&gt; {return 계산값})</ul><h6 id="or">or</h6><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">userList</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">21</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Doe</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">22</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">D</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">17</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">userList</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// 만약 배열의 나이 값이 19세 이상이라면</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">cur</span><span class="p">.</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">19</span><span class="p">){</span>
+        <span class="nx">prev</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">cur</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+    <span class="p">}</span> 
+    <span class="k">return</span> <span class="nx">prev</span><span class="p">;</span>
+<span class="p">},</span> <span class="p">[]);</span>
+<span class="c1">//prev는 배열도 가능하다/</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</pre></table></code></div></div><ul><li>리듀스 함수는 다양하게 활용 가능하다</ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/javascript-es6/'>Javascript(ES6)</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/%EB%A9%94%EC%86%8C%EB%93%9C/" class="post-tag no-text-decoration" >메소드</a> <a href="/tags/%EB%82%B4%EC%9E%A5%EA%B0%9D%EC%B2%B4/" class="post-tag no-text-decoration" >내장객체</a> <a href="/tags/array/" class="post-tag no-text-decoration" >Array</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> 이 기사는 저작권자의 <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> 라이센스를 따릅니다.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">공유하기</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Javascript%EC%9D%98+Array+%EB%A9%94%EC%86%8C%EB%93%9C+-+gogleset.log&url=https%3A%2F%2Fgogleset.github.io%2Fposts%2FJSArrayMethod%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Javascript%EC%9D%98+Array+%EB%A9%94%EC%86%8C%EB%93%9C+-+gogleset.log&u=https%3A%2F%2Fgogleset.github.io%2Fposts%2FJSArrayMethod%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fgogleset.github.io%2Fposts%2FJSArrayMethod%2F&text=Javascript%EC%9D%98+Array+%EB%A9%94%EC%86%8C%EB%93%9C+-+gogleset.log" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="링크 복사하기" data-title-succeed="링크가 복사되었습니다!"> </i> </span></div></div></div><script src="https://utteranc.es/client.js" repo="gogleset/gogleset.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async> </script></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">최근 업데이트</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/TSDomManupulation/">TypeScript Dom Manupulation</a><li><a href="/posts/TSFuncType/">TypeScript에서 함수의 타입 지정하기</a><li><a href="/posts/TSLiteralType/">TypeScript Type Alias와 Literal 타입</a><li><a href="/posts/TSTypeDeclaration/">TypeScript의 데이터 타입</a><li><a href="/posts/TSVoid/">TypeScript 타입 확정시키기</a></ul></div><div id="access-tags"><div class="panel-heading">인기 태그</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">타입스크립트</a> <a class="post-tag" href="/tags/%EB%B0%B1%EC%A4%80/">백준</a> <a class="post-tag" href="/tags/%EB%A9%94%EC%86%8C%EB%93%9C/">메소드</a> <a class="post-tag" href="/tags/%ED%95%A8%EC%88%98/">함수</a> <a class="post-tag" href="/tags/ts/">ts</a> <a class="post-tag" href="/tags/%EB%82%B4%EC%9E%A5%EA%B0%9D%EC%B2%B4/">내장객체</a> <a class="post-tag" href="/tags/class/">class</a> <a class="post-tag" href="/tags/cs/">CS</a> <a class="post-tag" href="/tags/interface/">interface</a> <a class="post-tag" href="/tags/this/">this</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">바로가기</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>관련된 글</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/JSMathMethod/"><div class="card-body"> <em class="timeago small" data-ts="1648695300" > 2022-03-31 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Javascript의 Math 메소드</h3><div class="text-muted small"><p> 유용한 Math 메소드 모음 .toString() 10진수를 2진수, 16진수로 변환하기 let num = 10; console.log(num.toString()); //문자열 10진수로 변환 -&amp;gt; &quot;10&quot; console.log(num.toString(2)); //문자열 2진수로 변환 -&amp;gt; &quot;1010&quot; let num = 255; co...</p></div></div></a></div><div class="card"> <a href="/posts/JSStringMethod/"><div class="card-body"> <em class="timeago small" data-ts="1649040900" > 2022-04-04 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Javascript의 String 메소드</h3><div class="text-muted small"><p> 유용한 String 메소드 모음 .length 문자열의 길이 알아내기 let a = &quot;akskdk&quot;; let b = [1,23,12,2,114,1]; console.log(a.length); //6 console.log(b.length); //6 .length는 배열의 길이뿐만 아니라 문자열(도 사실 배열)의 길이도 알려준다. ....</p></div></div></a></div><div class="card"> <a href="/posts/JsObject/"><div class="card-body"> <em class="timeago small" data-ts="1648522500" > 2022-03-29 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Javascript의 객체와 메소드</h3><div class="text-muted small"><p> 객체(Object) 객체란 이름(name)과 값(value)으로 구성된 프로퍼티(property)의 정렬되지 않은 집합이다. 객체 선언과 할당 const object = { key1: &quot;value1&quot;, key2: &quot;value2&quot;, } 일반 변수 선언과 똑같고, {}안에 키와 값을 넣는다. 프로퍼티 접근 o...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/JSStringMethod/" class="btn btn-outline-primary" prompt="이전 글"><p>Javascript의 String 메소드</p></a> <a href="/posts/BJ1316/" class="btn btn-outline-primary" prompt="다음 글"><p>백준 1316번 그룹 단어 체커</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">인기 태그</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">타입스크립트</a> <a class="post-tag" href="/tags/%EB%B0%B1%EC%A4%80/">백준</a> <a class="post-tag" href="/tags/%EB%A9%94%EC%86%8C%EB%93%9C/">메소드</a> <a class="post-tag" href="/tags/%ED%95%A8%EC%88%98/">함수</a> <a class="post-tag" href="/tags/ts/">ts</a> <a class="post-tag" href="/tags/%EB%82%B4%EC%9E%A5%EA%B0%9D%EC%B2%B4/">내장객체</a> <a class="post-tag" href="/tags/class/">class</a> <a class="post-tag" href="/tags/cs/">CS</a> <a class="post-tag" href="/tags/interface/">interface</a> <a class="post-tag" href="/tags/this/">this</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">검색 결과가 없습니다.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/ko.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-15WBLD65N0"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-15WBLD65N0'); }); </script>

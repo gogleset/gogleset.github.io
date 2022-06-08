@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/TSInterface/</loc>
+      
+        <lastmod>2022-05-26T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/TSClassTypes/</loc>
+      
+        <lastmod>2022-05-26T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/TSLiteralType/</loc>
+      
+        <lastmod>2022-06-08T11:50:42+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/TSDomManupulation/</loc>
+      
+        <lastmod>2022-06-08T12:12:27+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/TSVoid/</loc>
+      
+        <lastmod>2022-05-25T08:53:12+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/TSFuncType/</loc>
+      
+        <lastmod>2022-06-08T12:09:48+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/TSAny/</loc>
+      
+        <lastmod>2022-05-10T10:39:29+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSAsyncAwait/</loc>
+      
+        <lastmod>2022-05-09T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/TSstart/</loc>
+      
+        <lastmod>2022-05-06T13:29:57+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSPromise/</loc>
+      
+        <lastmod>2022-04-25T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSClass/</loc>
+      
+        <lastmod>2022-04-25T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSPrototype/</loc>
+      
+        <lastmod>2022-04-18T12:34:17+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSCallApplyBind/</loc>
+      
+        <lastmod>2022-04-18T12:34:17+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/TSTypeDeclaration/</loc>
+      
+        <lastmod>2022-05-25T08:55:27+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSRestParametersSpreadSyntax/</loc>
+      
+        <lastmod>2022-04-11T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSDestructuringAssignment/</loc>
+      
+        <lastmod>2022-04-11T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSClosure/</loc>
+      
+        <lastmod>2022-04-12T08:27:37+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/BJ1316/</loc>
+      
+        <lastmod>2022-04-11T11:07:36+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSArrayMethod/</loc>
+      
+        <lastmod>2022-04-11T10:29:37+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSStringMethod/</loc>
+      
+        <lastmod>2022-04-11T10:29:37+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JSMathMethod/</loc>
+      
+        <lastmod>2022-04-04T16:04:29+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/ComputerConfigurationComponents/</loc>
+      
+        <lastmod>2022-03-31T14:59:15+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/BJ2525/</loc>
+      
+        <lastmod>2022-03-31T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/BJ1546/</loc>
+      
+        <lastmod>2022-03-31T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/DataAndComputer/</loc>
+      
+        <lastmod>2022-03-31T11:17:50+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/BJ2884/</loc>
+      
+        <lastmod>2022-03-30T11:55:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JsObject/</loc>
+      
+        <lastmod>2022-04-11T10:29:37+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/BJ10809/</loc>
+      
+        <lastmod>2022-03-30T19:18:51+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JsFunction/</loc>
+      
+        <lastmod>2022-05-11T10:43:28+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/ComputedSystemNumber/</loc>
+      
+        <lastmod>2022-03-30T12:04:38+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JsLetConst/</loc>
+      
+        <lastmod>2022-04-11T09:45:27+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/JsDataType/</loc>
+      
+        <lastmod>2022-03-31T18:09:19+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/ComputedSystem/</loc>
+      
+        <lastmod>2022-03-28T11:56:19+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+    <url>
+      <loc>https://gogleset.github.io/posts/LinuxShellCommand/</loc>
+      
+        <lastmod>2022-03-28T17:28:32+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+        <priority>0.5</priority>
+      
+    </url>
+  
+</urlset>
