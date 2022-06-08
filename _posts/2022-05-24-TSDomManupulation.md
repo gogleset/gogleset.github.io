@@ -19,7 +19,7 @@ title.innerHTML = "반가워요";//error
 ###### 왜 에러?
 
 
-- title이 없을 경우 null로 할당될것이고, 할당이 제대로 된다면 html object가 올 것이기 때문에 type이  Element | null인 유니온 타입이라 타입을 확정시켜줘야한다.
+- title이 없을 경우 null로 할당될것이고, 할당이 제대로 된다면 html object가 올 것이기 때문에 type이 Element `|`null인 유니온 타입이라 타입을 확정시켜줘야한다.
 
 
 ---
@@ -67,6 +67,8 @@ if(title?.innerHTML != undefined){
 ```
 
 - innerHtml이 있다면 출력, 없다면 undefined 리턴
+
+
 
 4. tsconfig파일 수정
 
