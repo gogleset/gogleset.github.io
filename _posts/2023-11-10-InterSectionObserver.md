@@ -1,7 +1,7 @@
 ---
 title: "React에서 viewport 내 요소 감지하기"
 author: Jin
-date: 2022-03-26 10:55:00 +0800
+date: 2023-11-10 10:55:00 +0800
 categories: "React"
 tag: [react, intersectionObserver, js]
 toc: true
@@ -124,4 +124,5 @@ export default App;
   콘솔이 많이 찍히는 이유는 strict-mode와 custom hook 내의 threshold 속성 때문입니다. threshold 배열값을 수정하시면 원하시는만큼 감지할 수 있습니다.
 
   ### 활용하여 만든 무한스크롤
-![screenshot2](/assets/img/intersection2.gif)
+
+  ![screenshot2](/assets/img/intersection2.gif)
