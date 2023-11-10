@@ -8,8 +8,6 @@ toc: true
 comments: true
 ---
 
-<!-- ![Untitled](/assets/img/terminal.jpg){: width="400" height="400"} -->
-
 # React에서 viewport 내 요소 감지하기
 
 ---
