@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import url(./code.css);
+@import url(./prose.css); */
 body * {
   @apply transition-colors duration-200;
+}
+.prose a {
+  @apply transition-all;
 }

@@ -15,6 +15,9 @@ const config: Config = {
       },
     },
   },
+  variants: {
+    typography: ["dark"],
+  },
   darkMode: "class",
   plugins: [require("daisyui"), require("@tailwindcss/typography")],
   daisyui: {
