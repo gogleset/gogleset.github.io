@@ -13,7 +13,7 @@ export type Frontmatter = {
   date: string;
   tag: string[];
 };
-export default async function PostContent({ mdx }: Props<Frontmatter>) {
+export default function PostContent({ mdx }: Props<Frontmatter>) {
   // MDX text - can be from a local file, database, CMS, fetch, anywhere...
   const { content } = mdx;
   return (

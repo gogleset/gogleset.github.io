@@ -1,14 +1,16 @@
-import MdxPostComponent, { Frontmatter } from "@/app/components/Posts/Content";
-import PostContents from "@/app/components/Posts/Content";
-import PostSummary from "@/app/components/Posts/Summary";
-import PostTitle from "@/app/components/Posts/Title";
+import React from "react";
+import path from "path";
+import remarkGfm from "remark-gfm";
+import remarkToc from "remark-toc";
+
+import { Frontmatter } from "@/app/components/Posts/Content";
 import { convertSpaceToHyphen } from "@/app/util/string";
 import { readFileSync } from "fs";
 import { compileMDX } from "next-mdx-remote/rsc";
-import path from "path";
-import React from "react";
-import remarkGfm from "remark-gfm";
-import remarkToc from "remark-toc";
+
+import PostContents from "@/app/components/Posts/Content";
+import PostSummary from "@/app/components/Posts/Summary";
+import PostTitle from "@/app/components/Posts/Title";
 
 const components = {
   h1: (props: any) => {

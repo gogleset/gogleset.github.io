@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
+import { cookies } from "next/headers";
+import { theme } from "./types/style";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,8 +16,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const theme = cookies().get("theme");
+
+  console.log(theme);
   return (
-    <html lang="ko" data-theme="dracula">
+    <html
+      lang="ko"
+      data-theme={
+        theme === undefined
+          ? "cupcake"
+          : theme.value === "light"
+          ? "cupcake"
+          : "dracula"
+      }
+    >
       <body>
         <Header />
         {children}
