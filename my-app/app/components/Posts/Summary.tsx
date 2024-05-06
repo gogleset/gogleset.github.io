@@ -3,12 +3,12 @@ import { CompileMDXResult } from "next-mdx-remote/rsc";
 import { Frontmatter } from "./Content";
 import { extractDate } from "@/app/util/string";
 
-type Props<T> = {
+type PostSummaryProps<T> = {
   mdx: CompileMDXResult<T>;
   // Add additional props specific to your component
 };
 
-const PostSummary = ({ mdx }: Props<Frontmatter>) => {
+const PostSummary = ({ mdx }: PostSummaryProps<Frontmatter>) => {
   const { content } = mdx;
 
   return (

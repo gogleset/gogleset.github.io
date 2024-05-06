@@ -1,7 +1,7 @@
 import { CompileMDXResult } from "next-mdx-remote/rsc";
 import { Suspense } from "react";
 
-type Props<T> = {
+type PostContentProps<T> = {
   mdx: CompileMDXResult<T>;
   // Add additional props specific to your component
 };
@@ -13,7 +13,7 @@ export type Frontmatter = {
   date: string;
   tag: string[];
 };
-export default function PostContent({ mdx }: Props<Frontmatter>) {
+export default function PostContent({ mdx }: PostContentProps<Frontmatter>) {
   // MDX text - can be from a local file, database, CMS, fetch, anywhere...
   const { content } = mdx;
   return (
