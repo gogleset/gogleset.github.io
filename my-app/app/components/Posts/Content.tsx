@@ -10,6 +10,7 @@ export type Frontmatter = {
   title: string;
   author: string;
   categories: string;
+  description: string;
   date: string;
   tag: string[];
 };

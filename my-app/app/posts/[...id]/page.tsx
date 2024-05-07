@@ -1,16 +1,12 @@
-import React from "react";
 import path from "path";
-import remarkGfm from "remark-gfm";
-import remarkToc from "remark-toc";
 
-import { Frontmatter } from "@/app/components/Posts/Content";
 import { convertSpaceToHyphen } from "@/app/util/string";
 import { readFileSync } from "fs";
-import { compileMDX } from "next-mdx-remote/rsc";
 
 import PostContents from "@/app/components/Posts/Content";
 import PostSummary from "@/app/components/Posts/Summary";
 import PostTitle from "@/app/components/Posts/Title";
+import { createMDX } from "@/app/util/mdx";
 
 const components = {
   h1: (props: any) => {
@@ -38,18 +34,9 @@ const components = {
 const postPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const filePath = path.join(process.cwd(), "app", "asset", `${id}.md`);
-  const res = await readFileSync(filePath);
+  const file = readFileSync(filePath);
 
-  const mdx = await compileMDX<Frontmatter>({
-    source: res,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkToc],
-      },
-    },
-    components: components,
-  });
+  const mdx = await createMDX(file, components);
 
   return (
     <div className="flex flex-col w-full max-w-[1000px]">
