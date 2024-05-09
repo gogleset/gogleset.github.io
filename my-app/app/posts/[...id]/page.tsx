@@ -11,24 +11,13 @@ import Image from "next/image";
 
 const components = {
   h1: (props: any) => {
-    return (
-      <>
-        <h1 id={convertSpaceToHyphen(props.children)}>
-          {props.children}
-          <a href=""></a>
-        </h1>
-      </>
-    );
+    return <h1 id={convertSpaceToHyphen(props.children)}>{props.children}</h1>;
   },
   h2: (props: any) => {
-    return (
-      <>
-        <h2 id={convertSpaceToHyphen(props.children)}>
-          {props.children}
-          <a href=""></a>
-        </h2>
-      </>
-    );
+    return <h2 id={convertSpaceToHyphen(props.children)}>{props.children}</h2>;
+  },
+  h3: (props: any) => {
+    return <h3 id={convertSpaceToHyphen(props.children)}>{props.children}</h3>;
   },
   img: (props: any) => {
     return (
