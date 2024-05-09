@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -6,7 +7,7 @@ const Footer = () => {
       <footer className="footer footer-center p-10 justify-center">
         <nav>
           <div className="grid grid-flow-col gap-4">
-            <a>
+            <a target="_blank" href="https://github.com/gogleset">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

@@ -7,6 +7,7 @@ import PostContents from "@/app/components/Posts/Content";
 import PostSummary from "@/app/components/Posts/Summary";
 import PostTitle from "@/app/components/Posts/Title";
 import { createMDX } from "@/app/util/mdx";
+import Image from "next/image";
 
 const components = {
   h1: (props: any) => {
@@ -29,6 +30,19 @@ const components = {
       </>
     );
   },
+  img: (props: any) => {
+    return (
+      <span className="flex items-center justify-center">
+        <Image
+          src={props.src}
+          alt={props.alt}
+          width="300"
+          height="300"
+          quality={10}
+        />
+      </span>
+    );
+  },
 };
 
 const postPage = async ({ params }: { params: { id: string } }) => {
@@ -42,9 +56,10 @@ const postPage = async ({ params }: { params: { id: string } }) => {
     <div className="flex flex-col w-full max-w-[1000px]">
       <PostTitle mdx={mdx} />
       <article className="flex max-lg:flex-col">
-        <PostSummary mdx={mdx} />
+        {/* <PostSummary mdx={mdx} /> */}
         <PostContents mdx={mdx} />
       </article>
+      <hr />
     </div>
   );
 };
