@@ -1,38 +1,37 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 type PagenationButtonProps = {
-  page: number;
-  nextButtonDisabled: boolean;
+  maxPage: number;
 };
 
-const PaginationButton = ({
-  page,
-  nextButtonDisabled,
-}: PagenationButtonProps) => {
+const PaginationButton = ({ maxPage }: PagenationButtonProps) => {
   const router = useRouter();
-  const pageNumber = Number(page);
+  let pageParams = Number(useSearchParams().get("page"));
+  if (pageParams === 0) {
+    pageParams = 1;
+  }
+  const ButtonOnClickHandler = (page: number) => {
+    router.push(`/?page=${page}`);
+  };
 
-  const prevButtonOnClickHandler = () => {
-    router.push(`/?page=${pageNumber - 1}`);
-  };
-  const nextButtonOnClickHandler = () => {
-    router.push(`/?page=${pageNumber + 1}`);
-  };
   return (
     <div className="join">
-      <button
-        className="join-item btn"
-        disabled={page == 1}
-        onClick={prevButtonOnClickHandler}>
-        «
-      </button>
-      <button className="join-item btn">{page}</button>
-      <button
-        className="join-item btn"
-        onClick={nextButtonOnClickHandler}
-        disabled={nextButtonDisabled}>
-        »
-      </button>
+      {[...Array(maxPage)].map((_, index) => {
+        const page = index + 1;
+        return (
+          <input
+            key={`pagination_button_${page}`}
+            className="join-item btn btn-square"
+            type="radio"
+            name="options"
+            aria-label={`${page}`}
+            defaultChecked={page === pageParams}
+            onClick={() => {
+              return ButtonOnClickHandler(page);
+            }}
+          />
+        );
+      })}
     </div>
   );
 };

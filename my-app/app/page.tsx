@@ -6,7 +6,6 @@ import path from "path";
 import { createMDXs } from "./util/mdx";
 import { readMdFilesAsBuffers, readMdfiles } from "./util/file";
 
-
 type HomePageProps = {
   searchParams: {
     page: number;
@@ -20,24 +19,38 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   }
   const filePath = path.join(process.cwd(), "app", "asset");
   const fileNames = await readMdfiles(filePath);
+  const filteringNumber = 8;
+
   const files = await readMdFilesAsBuffers(filePath);
+  const minResource = filteringNumber * (page - 1) + (page - 2);
+  const maxResource = filteringNumber * page + (page - 2);
   const mdxs = (await createMDXs(files)).filter((item, index) => {
-    // pagenation 구현(8개씩 표현)
-    const min = (page - 1) * 8 - 1 < 0 ? 0 : (page - 1) * 8 - 1;
-    const max = page * 8 - 1;
-    if (index >= min && index <= max) {
-      return item;
+    if (page === 1) {
+      if (index < filteringNumber) {
+        return item;
+      }
+    } else {
+      if (index >= minResource && index <= maxResource) {
+        return (
+          <PostCard
+            mdx={item}
+            fileName={fileNames[index]}
+            key={`${item}_${index}`}
+          />
+        );
+      }
     }
   });
 
-  console.log(Math.ceil(fileNames.length / 8));
+  const maxPage = Math.ceil(fileNames.length / filteringNumber);
 
+  // console.log(minResource, maxResource);
+  // 8, 16 | 17, 25 | 26, 34;
   return (
-    <div className="flex flex-col items-center justify-between max-lg:p-4 min-h-screen max-lg:min-h-sm border border-white">
+    <div className="flex flex-col gap-5 items-center justify-between max-lg:p-4 min-h-screen max-lg:min-h-sm border border-white">
       <div className="max-w-3xl grid grid-cols-2 max-lg:grid-cols-1 gap-2 p-2 w-full border-white border">
         <Suspense fallback={<>loading...</>}>
           {mdxs.map((item, index) => {
-            console.log(item);
             return (
               <PostCard
                 mdx={item}
@@ -49,8 +62,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </Suspense>
       </div>
 
-      <div className="max-w-3xl flex justify-center items-center  w-full border-white border">
-        <PaginationButton page={page} nextButtonDisabled={mdxs.length < 7} />
+      <div className="max-w-3xl flex justify-center items-center mb-2 w-full border-white border">
+        <PaginationButton maxPage={maxPage} />
       </div>
     </div>
   );

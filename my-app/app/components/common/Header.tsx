@@ -10,11 +10,10 @@ const Header = () => {
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
         <Link
           href={PATH.HOME}
-          className="self-center text-xl font-semibold whitespace-nowrap  cursor-pointer"
-        >
+          className="self-center text-xl font-semibold whitespace-nowrap  cursor-pointer">
           gogleset's note
         </Link>
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
           <SearchButton />
           <DarkModeButton />
         </div>

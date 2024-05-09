@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Card from "./Card";
+import Card, { CardKey } from "./Card";
 import { CompileMDXResult } from "next-mdx-remote/rsc";
 import { Frontmatter } from "./Posts/Content";
 import { useRouter } from "next/navigation";
@@ -10,6 +10,7 @@ import { removeMdFileExtension } from "../util/string";
 type PostCardProps<T> = {
   mdx: CompileMDXResult<T>;
   fileName: string;
+  key: CardKey;
   // Add additional props specific to your component
 };
 

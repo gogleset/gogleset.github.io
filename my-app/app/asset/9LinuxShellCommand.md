@@ -1,22 +1,22 @@
 ---
-title: "SHELL COMMAND 명령어 모음"
+title: "9SHELL COMMAND 명령어 모음"
 author: Jin
 date: 2022-03-26 10:55:00 +0800
-description: "유닉스 및 유닉스 유사 운영 체제에서 자주 사용되는 다양한 쉘 명령어와 터미널 환경에서 작업할 때 유용한 명령어들을 모아봤습니다."
 categories: "Linux"
 tag: [linux, vi]
+description: "유닉스 및 유닉스 유사 운영 체제에서 자주 사용되는 다양한 쉘 명령어와 터미널 환경에서 작업할 때 유용한 명령어들을 모아봤습니다."
+toc: true
+comments: true
 ---
 
-## Table of contents
-
-# mac에서 명령 프롬프트 실행하기
+# 1.Mac에서 명령 프롬프트 실행하기
 
 1. F4키 및 화면 오른쪽 상단 돋보기 버튼 누르기 혹은 Spotlight 검색 실행
 2. terminal 및 iTerm2 검색 후 실행
 
 ---
 
-# 자주 쓰는 프롬프트 명령어 목록
+# 2.자주 쓰는 프롬프트 명령어 목록
 
 - 맥의 프롬프트 명령어는 Linux의 명령어랑 같다.
 - 파일시스템, 장치명, 디렉토리 등 모든 것이 파일로 취급되어 운영된다.
@@ -303,7 +303,6 @@ find 검색시작위치 -name "파일명패턴"
 2. 패턴으로 찾고 검색해서 지우기
 
 - 현재 사용자 홈 디렉토리에서 slink.txt파일을 찾아서 지우기
-
   ```bash
   find ~ -name "slink.txt" -delete
   ```
@@ -340,17 +339,13 @@ wget 다운로드URL
 ```
 
 - 다른 이름으로 저장하기
-
   ```bash
   wget -O 저장될파일이름 다운로드 URL
   ```
-
 - 이어받기
-
   ```bash
   wget -c 다운로드URL
   ```
-
   - 대용량 파일 다운 도중 멈추고 다시 다운받을 시 유용
 
 # 13. 압축하기

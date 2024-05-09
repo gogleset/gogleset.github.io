@@ -1,8 +1,10 @@
 type CardProps = {
   children: React.ReactNode;
   style?: React.CSSProperties;
+  key?: CardKey;
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
+export type CardKey = string | number;
 
 const Card = ({ children, onClick, style }: CardProps) => {
   return (
