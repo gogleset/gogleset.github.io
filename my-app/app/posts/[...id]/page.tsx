@@ -4,7 +4,6 @@ import { convertSpaceToHyphen } from "@/app/util/string";
 import { readFileSync } from "fs";
 
 import PostContents from "@/app/components/Posts/Content";
-import PostSummary from "@/app/components/Posts/Summary";
 import PostTitle from "@/app/components/Posts/Title";
 import { createMDX } from "@/app/util/mdx";
 import Image from "next/image";

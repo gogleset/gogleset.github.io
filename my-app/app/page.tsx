@@ -3,7 +3,7 @@ import PostCard from "./components/PostCard";
 import PaginationButton from "./components/PaginationButton";
 
 import path from "path";
-import { createMDXs } from "./util/mdx";
+import { createMDXs, myMdx } from "./util/mdx";
 import { readMdFilesAsBuffers, readMdfiles } from "./util/file";
 
 type HomePageProps = {
@@ -13,18 +13,12 @@ type HomePageProps = {
 };
 
 export default async function HomePage({ searchParams }: HomePageProps) {
-  let { page } = searchParams;
-  if (page === undefined) {
-    page = 1;
-  }
-  const filePath = path.join(process.cwd(), "app", "asset");
-  const fileNames = await readMdfiles(filePath);
+  let page = searchParams.page === undefined ? 1 : searchParams.page;
+  const fileNames = await readMdfiles(path.join(process.cwd(), "app", "asset"));
   const filteringNumber = 8;
-
-  const files = await readMdFilesAsBuffers(filePath);
   const minResource = filteringNumber * (page - 1) + (page - 2);
   const maxResource = filteringNumber * page + (page - 2);
-  const mdxs = (await createMDXs(files)).filter((item, index) => {
+  const mdxs = (await myMdx()).filter((item, index) => {
     if (page === 1) {
       if (index < filteringNumber) {
         return item;

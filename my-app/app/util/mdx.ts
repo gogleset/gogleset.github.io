@@ -3,6 +3,8 @@ import { Frontmatter } from "../components/Posts/Content";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
 import { MDXComponents } from "mdx/types";
+import path from "path";
+import { readMdFilesAsBuffers, readMdfiles } from "./file";
 
 export const createMDX = async (file: Buffer, components?: MDXComponents) => {
   return await compileMDX<Frontmatter>({
@@ -26,4 +28,10 @@ export const createMDXs = async (
       return await createMDX(file, components);
     })
   );
+};
+
+export const myMdx = async (components?: MDXComponents) => {
+  const filePath = path.join(process.cwd(), "app", "asset");
+  const files = await readMdFilesAsBuffers(filePath);
+  return await createMDXs(files, components);
 };

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Card, { CardKey } from "./Card";
+import Card, { CardKey } from "./Wrapper/Card";
 import { CompileMDXResult } from "next-mdx-remote/rsc";
 import { Frontmatter } from "./Posts/Content";
 import { useRouter } from "next/navigation";

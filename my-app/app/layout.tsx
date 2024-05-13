@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+
 import "./globals.css";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import { cookies } from "next/headers";
-import { theme } from "./types/style";
+import SearchModalEventListener from "./components/Wrapper/SearchModalEventListener";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +18,6 @@ export default function RootLayout({
 }>) {
   const theme = cookies().get("theme");
 
-  console.log(theme);
   return (
     <html
       lang="ko"
@@ -28,12 +27,13 @@ export default function RootLayout({
           : theme.value === "light"
           ? "cupcake"
           : "dracula"
-      }
-    >
+      }>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <SearchModalEventListener>
+          <Header />
+          {children}
+          <Footer />
+        </SearchModalEventListener>
       </body>
     </html>
   );
