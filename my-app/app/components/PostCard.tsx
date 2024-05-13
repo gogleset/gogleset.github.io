@@ -29,7 +29,7 @@ const PostCard = ({ mdx }: PostCardProps<Frontmatter>) => {
           </div>
           <span className="badge badge-accent">{frontmatter.categories}</span>
         </div>
-        <p className="w-11/12 text-sm text-gray-400 line-clamp-4">
+        <p className="w-11/12 text-sm line-clamp-4 text-current opacity-55">
           {frontmatter.description}
         </p>
       </div>

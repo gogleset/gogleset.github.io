@@ -10,7 +10,7 @@ const Card = ({ children, onClick, style }: CardProps) => {
   return (
     <article
       style={style}
-      className="border border-white rounded-xl p-3 h-56"
+      className="rounded-xl p-3 h-56 shadow-[0px_0px_14px_-5px] shadow-current"
       onClick={onClick}>
       {children}
     </article>
@@ -18,3 +18,4 @@ const Card = ({ children, onClick, style }: CardProps) => {
 };
 
 export default Card;
+// 17px 17px 25px 0px #EBEBEB

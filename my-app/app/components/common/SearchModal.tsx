@@ -3,6 +3,7 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { Frontmatter } from "../Posts/Content";
 import Link from "next/link";
+import { HTMLElementWithShowModal } from "@/app/types/modal";
 
 type SearchModalProps = {
   frontmatter: Frontmatter[];
@@ -60,7 +61,13 @@ const SearchModal = ({ frontmatter }: SearchModalProps) => {
           className="dropdown-content z-[1] menu p-3 shadow bg-base-100 rounded-box w-[91.666667%] max-w-[32rem]">
           {filter.map((item, index) => {
             return (
-              <li key={`${item}_${index}`}>
+              <li
+                key={`${item}_${index}`}
+                onClick={() => {
+                  const modal = document.getElementById(
+                    "my_modal_3"
+                  ) as HTMLElementWithShowModal;
+                }}>
                 <Link href={item.path}>{item.title}</Link>
               </li>
             );
