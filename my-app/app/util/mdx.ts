@@ -30,7 +30,7 @@ export const createMDXs = async (
   );
 };
 
-export const myMdx = async (components?: MDXComponents) => {
+export const myMdxs = async (components?: MDXComponents) => {
   const filePath = path.join(process.cwd(), "app", "asset");
   const files = await readMdFilesAsBuffers(filePath);
   return await createMDXs(files, components);

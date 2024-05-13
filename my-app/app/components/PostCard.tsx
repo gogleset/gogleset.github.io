@@ -4,23 +4,19 @@ import Card, { CardKey } from "./Wrapper/Card";
 import { CompileMDXResult } from "next-mdx-remote/rsc";
 import { Frontmatter } from "./Posts/Content";
 import { useRouter } from "next/navigation";
-import path from "path";
-import { removeMdFileExtension } from "../util/string";
 
 type PostCardProps<T> = {
   mdx: CompileMDXResult<T>;
-  fileName: string;
   key: CardKey;
   // Add additional props specific to your component
 };
 
-const PostCard = ({ mdx, fileName }: PostCardProps<Frontmatter>) => {
+const PostCard = ({ mdx }: PostCardProps<Frontmatter>) => {
   const router = useRouter();
   const { frontmatter } = mdx;
-  const postingPath = path.join("posts", removeMdFileExtension(fileName));
 
   const CardOnClickHandler = () => {
-    router.push(postingPath);
+    router.push(frontmatter.path);
   };
   return (
     <Card onClick={CardOnClickHandler} style={{ cursor: "pointer" }}>

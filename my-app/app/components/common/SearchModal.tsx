@@ -1,14 +1,15 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { Frontmatter } from "../Posts/Content";
+import Link from "next/link";
 
 type SearchModalProps = {
-  mdx: Frontmatter[];
+  frontmatter: Frontmatter[];
 };
 
-const SearchModal = ({ mdx }: SearchModalProps) => {
-  console.log(mdx);
+const SearchModal = ({ frontmatter }: SearchModalProps) => {
+  // console.log(frontmatter);
   const [inputState, setInputState] = useState<string>("");
 
   const inputOnChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +19,17 @@ const SearchModal = ({ mdx }: SearchModalProps) => {
   const closeButtonOnClickHandler = () => {
     setInputState("");
   };
-  console.log(inputState);
+  const filteringFile = useCallback(() => {
+    console.log(inputState);
+    if (inputState.length > 1) {
+      return frontmatter.filter((item) => {
+        return item.title.includes(inputState) || item.tag.includes(inputState);
+      });
+    }
+    return [];
+  }, [inputState]);
+  const filter = filteringFile();
+
   return (
     <dialog id="my_modal_3" className="modal flex flex-col pt-28 gap-3">
       <div className="modal-box pt-7 pb-6">
@@ -43,16 +54,17 @@ const SearchModal = ({ mdx }: SearchModalProps) => {
         </label>
       </div>
 
-      {inputState && (
+      {filter.length > 0 && (
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-[32rem]">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
+          className="dropdown-content z-[1] menu p-3 shadow bg-base-100 rounded-box w-[91.666667%] max-w-[32rem]">
+          {filter.map((item, index) => {
+            return (
+              <li key={`${item}_${index}`}>
+                <Link href={item.path}>{item.title}</Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </dialog>
