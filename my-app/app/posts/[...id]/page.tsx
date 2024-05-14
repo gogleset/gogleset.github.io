@@ -7,6 +7,7 @@ import PostContents from "@/app/components/Posts/Content";
 import PostTitle from "@/app/components/Posts/Title";
 import { createMDX } from "@/app/util/mdx";
 import Image from "next/image";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
 const components = {
   h1: (props: any) => {

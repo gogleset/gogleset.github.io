@@ -11,7 +11,7 @@ comments: true
 
 # 백준 2525번 오븐 시계
 
-```jsx
+```js {1,3-4} showLineNumbers
 const fs = require("fs");
 const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 const current = input[0].split(" ");

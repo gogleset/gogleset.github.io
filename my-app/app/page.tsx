@@ -5,6 +5,7 @@ import PaginationButton from "./components/PaginationButton";
 import path from "path";
 import { myMdxs } from "./util/mdx";
 import { readMdfiles } from "./util/file";
+import Loading from "./components/common/Loading";
 
 type HomePageProps = {
   searchParams: {
@@ -36,7 +37,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   return (
     <div className="flex flex-col gap-5 items-center justify-between max-lg:p-4 min-h-screen max-lg:min-h-sm ">
       <div className="max-w-3xl grid grid-cols-2 max-lg:grid-cols-1 gap-4 p-2 w-full  ">
-        <Suspense fallback={<>loading...</>}>
+        <Suspense fallback={<Loading />}>
           {mdxs.map((item, index) => {
             return <PostCard mdx={item} key={`${item}_${index}`} />;
           })}

@@ -1,5 +1,6 @@
 import { CompileMDXResult } from "next-mdx-remote/rsc";
 import { Suspense } from "react";
+import Loading from "../common/Loading";
 
 type PostContentProps<T> = {
   mdx: CompileMDXResult<T>;
@@ -19,7 +20,7 @@ export default function PostContent({ mdx }: PostContentProps<Frontmatter>) {
   // MDX text - can be from a local file, database, CMS, fetch, anywhere...
   const { content } = mdx;
   return (
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense fallback={<Loading />}>
       <div className="prose dark:prose-dark max-lg:prose-sm p-10 w-full max-w-full">
         {content}
       </div>

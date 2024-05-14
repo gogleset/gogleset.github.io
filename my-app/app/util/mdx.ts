@@ -2,9 +2,10 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import { Frontmatter } from "../components/Posts/Content";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
+import rehypePrism from "rehype-prism-plus";
 import { MDXComponents } from "mdx/types";
 import path from "path";
-import { readMdFilesAsBuffers, readMdfiles } from "./file";
+import { readMdFilesAsBuffers } from "./file";
 
 export const createMDX = async (file: Buffer, components?: MDXComponents) => {
   return await compileMDX<Frontmatter>({
@@ -13,6 +14,7 @@ export const createMDX = async (file: Buffer, components?: MDXComponents) => {
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm, remarkToc],
+        rehypePlugins: [rehypePrism],
       },
     },
     components: components ? components : null,
