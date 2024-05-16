@@ -26,7 +26,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       }
     } else {
       if (index >= minResource && index <= maxResource) {
-        return <PostCard mdx={item} key={`${item}_${index}`} />;
+        return item;
       }
     }
   });
@@ -35,11 +35,13 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   // 8, 16 | 17, 25 | 26, 34;
   return (
-    <div className="flex flex-col gap-5 items-center justify-between max-lg:p-4 min-h-screen max-lg:min-h-sm ">
+    <div className="flex flex-col gap-5 items-center justify-between  min-h-screen max-lg:min-h-sm ">
       <div className="max-w-3xl grid grid-cols-2 max-lg:grid-cols-1 gap-4 p-2 w-full  ">
         <Suspense fallback={<Loading />}>
           {mdxs.map((item, index) => {
-            return <PostCard mdx={item} key={`${item}_${index}`} />;
+            const key = `${JSON.stringify(item.frontmatter.title)}_${index}`;
+
+            return <PostCard mdx={item} key={key} />;
           })}
         </Suspense>
       </div>

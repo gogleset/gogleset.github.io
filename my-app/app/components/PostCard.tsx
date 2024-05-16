@@ -11,15 +11,15 @@ type PostCardProps<T> = {
   // Add additional props specific to your component
 };
 
-const PostCard = ({ mdx }: PostCardProps<Frontmatter>) => {
+const PostCard = ({ mdx, key }: PostCardProps<Frontmatter>) => {
   const router = useRouter();
   const { frontmatter } = mdx;
-
+  // console.log(key, mdx);
   const CardOnClickHandler = () => {
     router.push(frontmatter.path);
   };
   return (
-    <Card onClick={CardOnClickHandler} style={{ cursor: "pointer" }}>
+    <Card key={key} onClick={CardOnClickHandler} style={{ cursor: "pointer" }}>
       <div className="flex flex-col gap-4 justify-center items-center">
         <div className="flex flex-col gap-1 justify-center items-center w-full">
           <div className="w-5/6 text-center">
@@ -28,8 +28,13 @@ const PostCard = ({ mdx }: PostCardProps<Frontmatter>) => {
             </h1>
           </div>
           <div className="flex gap-1 ">
-            {frontmatter.tag.map((item) => {
-              return <span className="badge badge-accent">{item}</span>;
+            {frontmatter.tag.map((item, index) => {
+              const key = `${item}_${index}`;
+              return (
+                <span key={key} className="badge badge-accent">
+                  {item}
+                </span>
+              );
             })}
           </div>
         </div>

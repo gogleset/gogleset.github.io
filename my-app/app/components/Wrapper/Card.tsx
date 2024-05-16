@@ -6,9 +6,10 @@ type CardProps = {
 };
 export type CardKey = string | number;
 
-const Card = ({ children, onClick, style }: CardProps) => {
+const Card = ({ children, onClick, style, key }: CardProps) => {
   return (
     <article
+      key={key}
       style={style}
       className="rounded-xl p-3 h-56 shadow-[0px_0px_14px_-5px] shadow-current"
       onClick={onClick}>

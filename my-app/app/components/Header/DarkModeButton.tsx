@@ -28,7 +28,7 @@ const DarkModeButton = () => {
     }
   }, []);
   return (
-    <label className="swap">
+    <label className="swap max-lg:hidden">
       {/* this hidden checkbox controls the state */}
       <input type="checkbox" onClick={onClickHandler} />
       {/* sun icon */}

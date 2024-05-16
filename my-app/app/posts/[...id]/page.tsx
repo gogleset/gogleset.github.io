@@ -7,7 +7,6 @@ import PostContents from "@/app/components/Posts/Content";
 import PostTitle from "@/app/components/Posts/Title";
 import { createMDX } from "@/app/util/mdx";
 import Image from "next/image";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
 const components = {
   h1: (props: any) => {
@@ -42,14 +41,14 @@ const postPage = async ({ params }: { params: { id: string } }) => {
   const mdx = await createMDX(file, components);
 
   return (
-    <div className="flex flex-col w-full max-w-[1000px]">
+    <>
       <PostTitle mdx={mdx} />
-      <article className="flex max-lg:flex-col">
+      <div className="flex max-lg:flex-col">
         {/* <PostSummary mdx={mdx} /> */}
         <PostContents mdx={mdx} />
-      </article>
+      </div>
       <hr />
-    </div>
+    </>
   );
 };
 

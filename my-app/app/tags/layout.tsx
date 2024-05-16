@@ -1,5 +1,5 @@
-import Layout from "@/app/components/common/Layout";
-export default function PostLayout({
+import Layout from "../components/common/Layout";
+export default function TagsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

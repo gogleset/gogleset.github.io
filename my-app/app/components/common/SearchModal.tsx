@@ -10,7 +10,6 @@ type SearchModalProps = {
 };
 
 const SearchModal = ({ frontmatter }: SearchModalProps) => {
-  // console.log(frontmatter);
   const [inputState, setInputState] = useState<string>("");
 
   const inputOnChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -61,13 +60,7 @@ const SearchModal = ({ frontmatter }: SearchModalProps) => {
           className="dropdown-content z-[1] menu p-3 shadow bg-base-100 rounded-box w-[91.666667%] max-w-[32rem]">
           {filter.map((item, index) => {
             return (
-              <li
-                key={`${item}_${index}`}
-                onClick={() => {
-                  const modal = document.getElementById(
-                    "my_modal_3"
-                  ) as HTMLElementWithShowModal;
-                }}>
+              <li key={`${item}_${index}`}>
                 <Link href={item.path}>{item.title}</Link>
               </li>
             );
