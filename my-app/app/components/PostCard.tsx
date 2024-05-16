@@ -27,7 +27,11 @@ const PostCard = ({ mdx }: PostCardProps<Frontmatter>) => {
               {frontmatter.title}
             </h1>
           </div>
-          <span className="badge badge-accent">{frontmatter.categories}</span>
+          <div className="flex gap-1 ">
+            {frontmatter.tag.map((item) => {
+              return <span className="badge badge-accent">{item}</span>;
+            })}
+          </div>
         </div>
         <p className="w-11/12 text-sm line-clamp-4 text-current opacity-55">
           {frontmatter.description}

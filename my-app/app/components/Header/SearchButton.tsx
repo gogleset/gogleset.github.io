@@ -8,21 +8,33 @@ const SearchButton = async () => {
   });
 
   return (
-    // <div className=" mr-4" onClick={openModal}>
-    //   <svg className="h-4 w-4 fill-current " viewBox="0 0 56.966 56.966">
-    //     <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-    //   </svg>
-    //   <SearchModal frontmatter={frontmatter} />
-    // </div>
-    <label className="border border-2 p-2 flex items-center justify-around gap-2 rounded-3xl bg-current">
-      <button className=" " onClick={openModal} />
-      {/* <p className="text-black text-sm">Search...</p> */}
-
-      <kbd className="kbd kbd-sm">⌘K</kbd>
-      <kbd className="kbd kbd-sm">⌘K</kbd>
-
+    <>
+      {/* size: lg */}
+      <label className="border border-2 p-2 flex items-center justify-around gap-2 rounded-3xl bg-current text-center max-lg:hidden">
+        <button onClick={openModal} />
+        <p className="text-gray-400 text-opacity-75 text-sm">Search...</p>
+        <kbd className="kbd kbd-sm">⌘</kbd>
+        <kbd className="kbd kbd-sm">K</kbd>
+      </label>
+      {/* size: max-lg */}
+      <label className=" hidden max-lg:flex h-[40px]  items-center justify-center ">
+        <button onClick={openModal} />
+        <svg
+          className="pointer-events-none stroke-current  text-base-content"
+          width="33"
+          height="33"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </label>
       <SearchModal frontmatter={frontmatter} />
-    </label>
+    </>
   );
 };
 

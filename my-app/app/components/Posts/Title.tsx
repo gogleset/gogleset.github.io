@@ -18,7 +18,11 @@ const PostTitle = ({ mdx }: Props<Frontmatter>) => {
         </h1>
         <div className="flex flex-col items-center justify-center gap-1">
           <span className="text-gray">{extractDate(frontmatter.date)}</span>
-          <span className="badge badge-accent">{frontmatter.categories}</span>
+          <div className="flex gap-1 ">
+            {frontmatter.tag.map((item) => {
+              return <span className="badge badge-accent">{item}</span>;
+            })}
+          </div>
         </div>
       </div>
       <hr />

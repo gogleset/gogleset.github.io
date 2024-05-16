@@ -12,7 +12,7 @@ const Header = async () => {
           className="self-center text-xl font-semibold whitespace-nowrap  cursor-pointer">
           gogleset's note
         </Link>
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-4 items-center justify-center">
           <SearchButton />
           <DarkModeButton />
         </div>
