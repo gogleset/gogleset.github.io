@@ -2,7 +2,7 @@
 import React, { ChangeEvent } from "react";
 import Tabs from "./Tabs";
 
-const Menu = () => {
+const RNB = () => {
   const drawerChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     console.log(event.target);
   };
@@ -41,15 +41,15 @@ const Menu = () => {
         <label
           htmlFor="my-drawer-3"
           aria-label="close sidebar"
-          className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200">
+          className="drawer-overlay"
+        />
+        <div className="menu p-4 w-80 min-h-full bg-base-200">
           {/* Sidebar content here */}
-
           <Tabs col />
-        </ul>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Menu;
+export default RNB;

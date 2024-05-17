@@ -3,7 +3,7 @@ import SearchButton from "../Header/SearchButton";
 import PATH from "@/app/constant/path";
 import Link from "next/link";
 import Tabs from "../Header/Tabs";
-import Menu from "../Header/Menu";
+import RNB from "../Header/RNB";
 
 const Header = async () => {
   return (
@@ -24,7 +24,7 @@ const Header = async () => {
         <div className="flex gap-4 items-center justify-center">
           <SearchButton />
           <DarkModeButton />
-          <Menu />
+          <RNB />
         </div>
       </div>
     </header>

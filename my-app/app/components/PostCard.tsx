@@ -38,7 +38,7 @@ const PostCard = ({ mdx, key }: PostCardProps<Frontmatter>) => {
             })}
           </div>
         </div>
-        <p className="w-11/12 text-sm line-clamp-4 text-current opacity-55">
+        <p className="w-11/12 text-sm line-clamp-4 text-current ">
           {frontmatter.description}
         </p>
       </div>
