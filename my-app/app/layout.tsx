@@ -5,6 +5,7 @@ import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import { cookies } from "next/headers";
 import SearchModalEventListener from "./components/Wrapper/SearchModalEventListener";
+import Layout from "./components/common/Layout";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,7 +32,8 @@ export default function RootLayout({
       <body>
         <SearchModalEventListener>
           <Header />
-          {children}
+          <Layout>{children}</Layout>
+
           <Footer />
         </SearchModalEventListener>
       </body>
