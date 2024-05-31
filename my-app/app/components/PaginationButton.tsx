@@ -7,11 +7,16 @@ type PagenationButtonProps = {
 const PaginationButton = ({ maxPage }: PagenationButtonProps) => {
   const router = useRouter();
   let pageParams = Number(useSearchParams().get("page"));
+  let tag = useSearchParams().get("tag");
   if (pageParams === 0) {
     pageParams = 1;
   }
   const ButtonOnClickHandler = (page: number) => {
-    router.push(`/?page=${page}`);
+    if (tag) {
+      router.push(`/?tag=${tag}&page=${page}`);
+    } else {
+      router.push(`/?page=${page}`);
+    }
   };
 
   return (

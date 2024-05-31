@@ -5,15 +5,15 @@ import { CompileMDXResult } from "next-mdx-remote/rsc";
 import { Frontmatter } from "./Posts/Content";
 import { useRouter } from "next/navigation";
 
-type PostCardProps<T> = {
-  mdx: CompileMDXResult<T>;
+type PostCardProps = {
+  frontmatter: Frontmatter;
   key: CardKey;
   // Add additional props specific to your component
 };
 
-const PostCard = ({ mdx, key }: PostCardProps<Frontmatter>) => {
+const PostCard = ({ frontmatter, key }: PostCardProps) => {
   const router = useRouter();
-  const { frontmatter } = mdx;
+  console.log(frontmatter);
   // console.log(key, mdx);
   const CardOnClickHandler = () => {
     router.push(frontmatter.path);

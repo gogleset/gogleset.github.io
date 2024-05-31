@@ -5,10 +5,10 @@ import { Frontmatter } from "../Posts/Content";
 import Link from "next/link";
 
 type SearchModalProps = {
-  frontmatter: Frontmatter[];
+  frontmatterList: Frontmatter[];
 };
 
-const SearchModal = ({ frontmatter }: SearchModalProps) => {
+const SearchModal = ({ frontmatterList }: SearchModalProps) => {
   const [inputState, setInputState] = useState<string>("");
 
   const inputOnChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -24,14 +24,14 @@ const SearchModal = ({ frontmatter }: SearchModalProps) => {
   };
   const filteringFile = useCallback(() => {
     if (inputState.length > 1) {
-      return frontmatter.filter((item) => {
+      return frontmatterList.filter((item) => {
         return item.title.includes(inputState) || item.tag.includes(inputState);
       });
     }
     return [];
   }, [inputState]);
   const filteringTag = useCallback(() => {
-    const filter = frontmatter
+    const filter = frontmatterList
       .map((item) => {
         return item.tag;
       })

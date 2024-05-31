@@ -23,7 +23,9 @@ const Header = async () => {
 
         <div className="flex gap-4 items-center justify-center">
           <SearchButton />
-          <DarkModeButton />
+          <div className="max-lg:hidden">
+            <DarkModeButton />
+          </div>
           <RNB />
         </div>
       </div>

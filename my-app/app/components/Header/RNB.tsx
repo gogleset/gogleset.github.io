@@ -1,6 +1,7 @@
 "use client";
 import React, { ChangeEvent } from "react";
-import Tabs from "./Tabs";
+import Tabs, { myDrawer3Close } from "./Tabs";
+import DarkModeButton from "./DarkModeButton";
 
 const RNB = () => {
   const drawerChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -43,9 +44,22 @@ const RNB = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         />
-        <div className="menu p-4 w-80 min-h-full bg-base-200">
-          {/* Sidebar content here */}
+        {/* Sidebar content here */}
+        <div className="menu p-4 w-80 min-h-full bg-base-200 justify-between">
           <Tabs col />
+          <div className="flex justify-between">
+            {/* X button */}
+            <svg
+              onClick={myDrawer3Close}
+              className="fill-current cursor-pointer"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 512 512">
+              <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+            </svg>
+            <DarkModeButton />
+          </div>
         </div>
       </div>
     </div>

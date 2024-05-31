@@ -37,3 +37,17 @@ export const myMdxs = async (components?: MDXComponents) => {
   const files = await readMdFilesAsBuffers(filePath);
   return await createMDXs(files, components);
 };
+
+export const frontmatters = async () => {
+  return (await myMdxs()).map((item) => {
+    return item.frontmatter;
+  });
+};
+export const filteringTags = (frontmatter: Frontmatter[]) => {
+  const filter = frontmatter
+    .map((item) => {
+      return item.tag;
+    })
+    .flat();
+  return Array.from(new Set(filter));
+};

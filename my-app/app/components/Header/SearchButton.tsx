@@ -1,11 +1,9 @@
-import { myMdxs } from "@/app/util/mdx";
+import { frontmatters } from "@/app/util/mdx";
 import SearchModal from "../common/SearchModal";
 import { openModal } from "../Wrapper/SearchModalEventListener";
 
 const SearchButton = async () => {
-  const frontmatter = (await myMdxs()).map((item) => {
-    return item.frontmatter;
-  });
+  const frontmatterList = await frontmatters();
 
   return (
     <>
@@ -33,7 +31,7 @@ const SearchButton = async () => {
             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
       </label>
-      <SearchModal frontmatter={frontmatter} />
+      <SearchModal frontmatterList={frontmatterList} />
     </>
   );
 };

@@ -2,6 +2,7 @@
 import { mode, theme } from "@/app/types/style";
 import { getCookie, setCookie } from "@/app/util/cookie";
 import { useEffect, useState } from "react";
+import { myDrawer3Close } from "./Tabs";
 
 const DarkModeButton = () => {
   const [themeState, setThemeState] = useState<mode>();
@@ -28,7 +29,7 @@ const DarkModeButton = () => {
     }
   }, []);
   return (
-    <label className="swap max-lg:hidden">
+    <label className="swap ">
       {/* this hidden checkbox controls the state */}
       <input type="checkbox" onClick={onClickHandler} />
       {/* sun icon */}
