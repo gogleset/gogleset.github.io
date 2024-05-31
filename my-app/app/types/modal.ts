@@ -1,5 +1,5 @@
 // modal type
 
-export interface HTMLElementWithShowModal extends HTMLElement {
+export interface HTMLElementWithShowModal extends HTMLDialogElement {
   showModal: () => void;
 }
