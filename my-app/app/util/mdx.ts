@@ -6,6 +6,7 @@ import rehypePrism from "rehype-prism-plus";
 import { MDXComponents } from "mdx/types";
 import path from "path";
 import { readMdFilesAsBuffers } from "./file";
+import { readFileSync } from "fs";
 
 export const createMDX = async (file: Buffer, components?: MDXComponents) => {
   return await compileMDX<Frontmatter>({
@@ -30,6 +31,12 @@ export const createMDXs = async (
       return await createMDX(file, components);
     })
   );
+};
+
+export const myMdx = async (fileName: string, components?: MDXComponents) => {
+  const filePath = path.join(process.cwd(), "app", "asset", `${fileName}.md`);
+  const file = readFileSync(filePath);
+  return await createMDX(file, components);
 };
 
 export const myMdxs = async (components?: MDXComponents) => {

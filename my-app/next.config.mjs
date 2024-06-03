@@ -7,6 +7,14 @@ const nextConfig = {
   // Optionally, add any other Next.js config below
 };
 
+if (process.env.NEXT_PUBLIC_NODE_ENV === "prod") {
+  nextConfig.compiler = {
+    removeConsole: {
+      exclude: ["error", "warn"],
+    },
+  };
+}
+
 const withMDX = createMDX({
   // Add markdown plugins here, as desired
 });

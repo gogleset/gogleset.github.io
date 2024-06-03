@@ -1,4 +1,7 @@
 import Layout from "@/app/components/common/Layout";
+import { Metadata } from "next";
+
+
 export default function PostLayout({
   children,
 }: Readonly<{

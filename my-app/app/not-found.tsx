@@ -5,7 +5,7 @@ export default function NotFound() {
     <section>
       <div className="container flex pt-32 min-h-screen  mx-auto">
         <div className="flex flex-col items-center max-w-sm mx-auto text-center">
-          <p className="p-3 text-sm font-medium text-blue-500 rounded-full bg-blue-50 dark:bg-gray-800">
+          <p className="p-3 text-sm font-medium text-current rounded-full  ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -20,14 +20,10 @@ export default function NotFound() {
               />
             </svg>
           </p>
-          <h1 className="mt-3 text-2xl font-semibold md:text-3xl">
-            Page not found
-          </h1>
-
-          <Link
-            href={"/"}
-            className="mt-10 w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
-            Take me home
+          <p className="mt-3 text-2xl font-semibold md:text-3xl">OOPS! </p>
+          <h1 className="mt-1 text-xl font-semibold">404 page not found</h1>
+          <Link href={"/"} className="mt-10 btn btn-success">
+            Home
           </Link>
         </div>
       </div>

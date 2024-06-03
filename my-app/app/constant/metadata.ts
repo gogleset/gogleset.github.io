@@ -1,21 +1,42 @@
-import { SEOProps } from "../components/common/SEO";
-
+export type SEO = {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  openGraph?: {
+    type?: string;
+    title?: string;
+    description?: string;
+    url?: string;
+    image?: {
+      content: string;
+      width: string;
+      height: string;
+    };
+    local?: string;
+    twitter?: {
+      card: string;
+      title: string;
+      description: string;
+      image: string;
+    };
+  };
+};
 /**
  * 메타데이터
  */
 export default {
-  title: "WEB2X Portal",
-  siteName: "WEB2X Portal",
-  description: "WEB2X Portal Description",
-  keywords: "WEB2X",
-  url: "https://www.web2x.com", // 임시
+  title: "gogleset's note",
+  siteName: "gogleset's note",
+  description: "gogleset's blog & note",
+  keywords: "gogleset",
+  url: "https://gogleset.github.io", // 임시
   //   googleVerification: "xxx", // 사이트를 등록하고 받은 검증 코드(구글)
   // naverVerification: "xxx", // 사이트를 등록하고 받은 검증 코드(네이버)
-  og: {
+  openGraph: {
     type: "website",
-    title: "WEB2X Portal",
-    description: "WEB2X Portal Description",
-    url: "https://www.web2x.com",
+    title: "gogleset's note",
+    description: "gogleset's blog & note",
+    url: "https://gogleset.github.io",
     local: "ko_KR",
     image: {
       width: "1200",
@@ -24,9 +45,9 @@ export default {
     },
     twitter: {
       card: "twitter",
-      title: "WEB2X Portal",
-      description: "WEB2X Portal Description",
+      title: "gogleset's note",
+      description: "gogleset's blog & note",
       image: "https://placehold.co/400",
     },
   },
-} as SEOProps;
+} as SEO;
