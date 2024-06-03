@@ -18,26 +18,32 @@ const PaginationButton = ({ maxPage }: PagenationButtonProps) => {
       router.push(`/?page=${page}`);
     }
   };
-
+  console.log(maxPage);
   return (
-    <div className="join">
-      {[...Array(maxPage)].map((_, index) => {
-        const page = index + 1;
-        return (
-          <input
-            key={`pagination_button_${page}`}
-            className="join-item btn btn-square"
-            type="radio"
-            name="options"
-            aria-label={`${page}`}
-            defaultChecked={page === pageParams}
-            onClick={() => {
-              return ButtonOnClickHandler(page);
-            }}
-          />
-        );
-      })}
-    </div>
+    <>
+      {maxPage > 1 ? (
+        <div className="join">
+          {[...Array(maxPage)].map((_, index) => {
+            const page = index + 1;
+            return (
+              <input
+                key={`pagination_button_${page}`}
+                className="join-item btn btn-square"
+                type="radio"
+                name="options"
+                aria-label={`${page}`}
+                defaultChecked={page === pageParams}
+                onClick={() => {
+                  return ButtonOnClickHandler(page);
+                }}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

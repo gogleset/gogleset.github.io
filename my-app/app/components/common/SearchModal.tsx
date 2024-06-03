@@ -3,6 +3,7 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { Frontmatter } from "../Posts/Content";
 import Link from "next/link";
+import { closeModal } from "../Wrapper/SearchModalEventListener";
 
 type SearchModalProps = {
   frontmatterList: Frontmatter[];
@@ -67,11 +68,6 @@ const SearchModal = ({ frontmatterList }: SearchModalProps) => {
           {/* <span>tags : </span> */}
           <ul className="flex gap-2 items-center w-full overflow-x-scroll scrollbar-hide">
             {tags.map((item, index) => {
-              console.log(item);
-
-              //  <span key={key} className="badge badge-accent">
-              //    {item}
-              //  </span>;
               return (
                 <li
                   className="badge badge-accent cursor-pointer"
@@ -95,7 +91,7 @@ const SearchModal = ({ frontmatterList }: SearchModalProps) => {
         }  z-[1] menu p-3 shadow bg-base-100 rounded-box w-[91.666667%] max-w-[32rem] max-h-72 flex-nowrap overflow-scroll`}>
         {filter.map((item, index) => {
           return (
-            <li key={`${item}_${index}`}>
+            <li key={`${item}_${index}`} onClick={closeModal}>
               <Link href={item.path}>{item.title}</Link>
             </li>
           );

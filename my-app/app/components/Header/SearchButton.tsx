@@ -8,14 +8,14 @@ const SearchButton = async () => {
   return (
     <>
       {/* size: lg */}
-      <label className="border border-2 p-2 flex items-center justify-around gap-2 rounded-3xl bg-current text-center max-lg:hidden">
+      <label className="border border-2 p-2 flex items-center justify-around gap-2 rounded-3xl bg-current text-center max-lg:hidden cursor-pointer">
         <button onClick={openModal} />
         <p className="text-gray-400 text-opacity-75 text-sm">Search...</p>
         <kbd className="kbd kbd-sm">⌘</kbd>
         <kbd className="kbd kbd-sm">K</kbd>
       </label>
       {/* size: max-lg */}
-      <label className=" hidden max-lg:flex h-[40px]  items-center justify-center ">
+      <label className=" hidden max-lg:flex h-[40px]  items-center justify-center cursor-pointer">
         <button onClick={openModal} />
         <svg
           className="pointer-events-none stroke-current  text-base-content"

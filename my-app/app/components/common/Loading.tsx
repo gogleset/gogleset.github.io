@@ -1,7 +1,9 @@
 import React from "react";
 
 const Loading = () => {
-  return <span className="loading loading-infinity loading-lg"></span>;
+  return (
+    <div className="loading loading-infinity loading-lg min-h-screen"></div>
+  );
 };
 
 export default Loading;

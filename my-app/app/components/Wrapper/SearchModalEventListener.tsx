@@ -15,6 +15,16 @@ export const openModal = () => {
   }
 };
 
+export const closeModal = () => {
+  const button = document.querySelector(
+    "#my_modal_3 form > button"
+  ) as HTMLButtonElement;
+
+  if (button) {
+    button.click();
+  }
+};
+
 const SearchModalEventListener = ({ children }: SearchEventListenerProps) => {
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if ((event.metaKey || event.ctrlKey) && event.key === "k") {

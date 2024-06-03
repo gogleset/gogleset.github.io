@@ -33,7 +33,6 @@ export default function RootLayout({
         <SearchModalEventListener>
           <Header />
           <Layout>{children}</Layout>
-
           <Footer />
         </SearchModalEventListener>
       </body>
