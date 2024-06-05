@@ -1,10 +1,7 @@
 import PostCard from "./components/PostCard";
 import PaginationButton from "./components/PaginationButton";
 
-import path from "path";
 import { frontmatters } from "./util/mdx";
-import { readMdfiles } from "./util/file";
-import Loading from "./components/common/Loading";
 
 type HomePageProps = {
   searchParams: {
@@ -45,20 +42,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       }
     }
   );
-
-  console.log(pagingFrontmatterList);
-
-  // const frontmatter = (await frontmatters()).filter((item, index) => {
-  //   if (page === 1) {
-  //     if (index < filteringNumber) {
-  //       return item;
-  //     }
-  //   } else {
-  //     if (index >= minResource && index <= maxResource) {
-  //       return item;
-  //     }
-  //   }
-  // });
 
   const maxPage = Math.ceil(fileNumber / filteringNumber);
 

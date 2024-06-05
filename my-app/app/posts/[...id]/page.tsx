@@ -66,10 +66,10 @@ const postPage = async ({ params }: PostPageProps) => {
   return (
     <>
       <PostTitle mdx={mdx} />
-      <div className="flex max-lg:flex-col">
-        {/* <PostSummary mdx={mdx} /> */}
-        <PostContents mdx={mdx} />
-      </div>
+
+      {/* <PostSummary mdx={mdx} /> */}
+      <PostContents mdx={mdx} />
+
       <hr />
     </>
   );

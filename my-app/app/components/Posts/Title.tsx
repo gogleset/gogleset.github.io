@@ -12,8 +12,8 @@ const PostTitle = ({ mdx }: Props<Frontmatter>) => {
   const { frontmatter } = mdx;
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-64 p-5 gap-3">
-        <h1 className="text-3xl max-lg:text-2xl font-bold ">
+      <div className="flex flex-col items-center justify-center h-64 gap-3">
+        <h1 className="text-3xl max-lg:text-2xl font-bold text-center">
           {frontmatter.title}
         </h1>
         <div className="flex flex-col items-center justify-center gap-1">

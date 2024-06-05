@@ -21,11 +21,7 @@ const Tabs = ({ col }: TabsProps) => {
         onClick={myDrawer3Close}>
         <Link href="/tags">Tags</Link>
       </li>
-      <li
-        className="self-center text-lg font-semibold whitespace-nowrap cursor-pointer"
-        onClick={myDrawer3Close}>
-        <Link href="/categories">Categories</Link>
-      </li>
+
       <li
         className="self-center text-lg font-semibold whitespace-nowrap cursor-pointer"
         onClick={myDrawer3Close}>

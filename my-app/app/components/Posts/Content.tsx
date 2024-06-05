@@ -21,9 +21,7 @@ export default function PostContent({ mdx }: PostContentProps<Frontmatter>) {
   const { content } = mdx;
   return (
     <Suspense fallback={<Loading />}>
-      <div className="prose dark:prose-dark max-lg:prose-sm p-10 w-full max-w-full">
-        {content}
-      </div>
+      <div className="prose w-full max-sm:prose-sm">{content}</div>
     </Suspense>
   );
 
