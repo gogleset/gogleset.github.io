@@ -3,6 +3,9 @@
 @tailwind utilities;
 /* @import url(./code.css);
 @import url(./prose.css); */
+html {
+  scroll-behavior: smooth;
+}
 body * {
   /* @apply transition-colors duration-200; */
 }

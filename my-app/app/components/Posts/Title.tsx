@@ -30,7 +30,7 @@ const PostTitle = ({ mdx }: Props<Frontmatter>) => {
           </div>
         </div>
       </div>
-      <hr />
+      <hr className="mb-[100px]" />
     </>
   );
 };
