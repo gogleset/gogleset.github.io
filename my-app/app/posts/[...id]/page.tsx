@@ -71,7 +71,7 @@ const postPage = async ({ params }: PostPageProps) => {
       {/* <PostSummary mdx={mdx} /> */}
       <PostContents mdx={mdx} />
 
-      <hr />
+      <hr className="mt-10" />
     </>
   );
 };

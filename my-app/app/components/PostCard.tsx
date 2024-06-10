@@ -20,8 +20,8 @@ const PostCard = ({ frontmatter, key }: PostCardProps) => {
   };
   return (
     <Card key={key} onClick={CardOnClickHandler} style={{ cursor: "pointer" }}>
-      <div className="flex flex-col gap-4 justify-center items-center">
-        <div className="flex flex-col gap-1 justify-center items-center w-full">
+      <div className="flex flex-col gap-8 justify-center items-center">
+        <div className="flex flex-col gap-3 justify-center items-center w-full">
           <div className="w-5/6 text-center">
             <h1 className="font-bold text-2xl overflow-hidden whitespace-nowrap text-ellipsis break-all">
               {frontmatter.title}

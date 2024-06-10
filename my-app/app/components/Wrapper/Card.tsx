@@ -11,7 +11,7 @@ const Card = ({ children, onClick, style, key }: CardProps) => {
     <div
       key={key}
       style={style}
-      className="rounded-xl p-3 h-56 shadow-[0px_0px_14px_-5px] shadow-current"
+      className="rounded-xl p-3 h-56 bg-base-300"
       onClick={onClick}>
       {children}
     </div>
