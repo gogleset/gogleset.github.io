@@ -22,11 +22,11 @@ const Tabs = ({ col }: TabsProps) => {
         <Link href="/tags">Tags</Link>
       </li>
 
-      <li
+      {/* <li
         className="self-center text-lg font-semibold whitespace-nowrap cursor-pointer"
         onClick={myDrawer3Close}>
         <Link href="/about">About</Link>
-      </li>
+      </li> */}
     </ul>
   );
 };

@@ -27,6 +27,7 @@ export async function generateMetadata(
   return {
     // title: product.title,
     description: frontmatter.description,
+    keywords: `gogleset,${frontmatter.tag.map((tag) => tag)}`,
     openGraph: {
       title: frontmatter.title,
       // images: ["/some-specific-page-image.jpg", ...previousImages],

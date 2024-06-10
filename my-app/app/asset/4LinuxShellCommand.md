@@ -6,19 +6,20 @@ categories: "Linux"
 tag: [linux, vi]
 description: "유닉스 및 유닉스 유사 운영 체제에서 자주 사용되는 다양한 쉘 명령어와 터미널 환경에서 작업할 때 유용한 명령어들을 모아봤습니다."
 path: "/posts/4LinuxShellCommand"
-
 toc: true
 comments: true
 ---
 
-# 1.Mac에서 명령 프롬프트 실행하기
+# Table of Contents
+
+# Mac에서 명령 프롬프트 실행하기
 
 1. F4키 및 화면 오른쪽 상단 돋보기 버튼 누르기 혹은 Spotlight 검색 실행
 2. terminal 및 iTerm2 검색 후 실행
 
 ---
 
-# 2.자주 쓰는 프롬프트 명령어 목록
+# 자주 쓰는 프롬프트 명령어 목록
 
 - 맥의 프롬프트 명령어는 Linux의 명령어랑 같다.
 - 파일시스템, 장치명, 디렉토리 등 모든 것이 파일로 취급되어 운영된다.

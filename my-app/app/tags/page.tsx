@@ -21,7 +21,7 @@ const page = async () => {
   const tags = filteringTags(frontmatter);
 
   return (
-    <div className=" w-full h-screen px-4 lg:px-6 py-4 flex flex-col gap-5">
+    <div className="w-full h-screen flex flex-col gap-5">
       <h1 className="text-3xl font-semibold">All Tags</h1>
       <div className="flex gap-4 flex-wrap">
         {tags.map((item, index) => {

@@ -222,6 +222,3 @@ pre[class*="language-"] {
 .token.variable {
   color: #f07178;
 }
-pre[class*="language-"] {
-  z-index: -999;
-}

@@ -61,8 +61,8 @@ const SearchModal = ({ frontmatterList }: SearchModalProps) => {
             placeholder="Search"
             onChange={inputOnChangeHandler}
           />
-          <kbd className="kbd kbd-sm">⌘</kbd>
-          <kbd className="kbd kbd-sm">K</kbd>
+          <kbd className="kbd kbd-sm max-lg:hidden">⌘</kbd>
+          <kbd className="kbd kbd-sm max-lg:hidden">K</kbd>
         </label>
         <div className="flex gap-2 items-center mt-3">
           {/* <span>tags : </span> */}

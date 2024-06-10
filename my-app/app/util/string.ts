@@ -1,9 +1,13 @@
 export function convertSpaceToHyphen(str: string): string {
-  // 문자열에서 공백 문자를 하이픈으로 대체
-  const result = str.replace(/\s+/g, "-");
+  // 1. 특수문자를 공백으로 변환
+  const withoutSpecialChars = str.replace(/[^가-힣\w\s]/g, "");
 
-  return result;
+  // 2. 공백을 하이픈으로 변환
+  const result = withoutSpecialChars.split(" ").join("-");
+  // table of contents에선 .과 대문자, (, ), [, ], , 문자를 모두 parsing하지 않는다.
+  return result.toLowerCase();
 }
+
 export function extractDate(dateString: string): string {
   // year-month-day 형식으로 날짜 형식 맞추기
   const date = new Date(dateString);

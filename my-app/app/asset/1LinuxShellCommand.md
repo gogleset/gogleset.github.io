@@ -3,7 +3,7 @@ title: "SHELL COMMAND 명령어 모음"
 author: Jin
 date: 2022-03-26 10:55:00 +0800
 categories: "Linux"
-tag: [linux, vi]
+tag: [linux, vi, 명령어]
 description: "유닉스 및 유닉스 유사 운영 체제에서 자주 사용되는 다양한 쉘 명령어와 터미널 환경에서 작업할 때 유용한 명령어들을 모아봤습니다."
 path: "/posts/1LinuxShellCommand"
 toc: true

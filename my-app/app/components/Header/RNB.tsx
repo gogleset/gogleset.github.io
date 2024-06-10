@@ -1,12 +1,34 @@
 "use client";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useRef } from "react";
 import Tabs, { myDrawer3Close } from "./Tabs";
 import DarkModeButton from "./DarkModeButton";
 
+const changePreZIndexFromRNB = (zIndex: string = "0") => {
+  const preElements = document.querySelectorAll('pre[class*="language-"]');
+  preElements.forEach((item) => {
+    const element = item as HTMLPreElement;
+    element.style.zIndex = zIndex;
+  });
+};
+
 const RNB = () => {
+  const timerRef = useRef<NodeJS.Timeout>();
   const drawerChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target);
+    const { checked } = event.target;
+    if (checked) {
+      changePreZIndexFromRNB("-999");
+    } else {
+      timerRef.current = setTimeout(changePreZIndexFromRNB, 500);
+    }
   };
+
+  useEffect(() => {
+    // unmount시 해제
+    return () => {
+      console.log("unmount");
+      clearTimeout(timerRef.current);
+    };
+  }, []);
   return (
     <div className="drawer drawer-end lg:hidden">
       <input

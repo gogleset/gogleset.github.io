@@ -47,7 +47,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   // 8, 16 | 17, 25 | 26, 34;
   return (
-    <div className="flex flex-col gap-5 items-center min-h-screen max-lg:min-h-sm max-w-3xl w-full max-lg:px-4">
+    <div className="flex flex-col gap-5 items-center min-h-screen max-lg:min-h-sm max-w-3xl w-full">
       {/* heading */}
       <div className="w-full flex items-end gap-2">
         <h1 className="font-semibold text-2xl">
