@@ -56,7 +56,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <p className="font-semibold text-xl">{fileNumber}</p>
       </div>
       {/* posting */}
-      <div className=" grid grid-cols-2 max-lg:grid-cols-1 gap-4 w-full">
+      <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-4 w-full">
         {pagingFrontmatterList.map((item, index) => {
           // console.log(item.frontmatter.tag);
           const key = `${JSON.stringify(item.title)}_${index}`;

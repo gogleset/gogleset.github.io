@@ -7,7 +7,10 @@ const Footer = () => {
       <footer className="footer footer-center p-10 justify-center">
         <nav>
           <div className="grid grid-flow-col gap-4">
-            <a target="_blank" href="https://github.com/gogleset">
+            <a
+              title="github"
+              target="_blank"
+              href="https://github.com/gogleset">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

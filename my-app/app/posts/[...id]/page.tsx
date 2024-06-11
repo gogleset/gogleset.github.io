@@ -25,7 +25,7 @@ export async function generateMetadata(
   // const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    // title: product.title,
+    title: frontmatter.title,
     description: frontmatter.description,
     keywords: `gogleset,${frontmatter.tag.map((tag) => tag)}`,
     openGraph: {

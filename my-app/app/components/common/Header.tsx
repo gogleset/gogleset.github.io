@@ -24,7 +24,7 @@ const Header = () => {
         <div className="flex gap-4 items-center justify-center">
           <SearchButton />
 
-          <div className="max-lg:hidden">
+          <div className="max-lg:hidden flex">
             <DarkModeButton />
           </div>
           <RNB />
