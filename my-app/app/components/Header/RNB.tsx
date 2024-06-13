@@ -1,42 +1,11 @@
-"use client";
-import React, { ChangeEvent, useEffect, useRef } from "react";
+import React from "react";
 import Tabs, { myDrawer3Close } from "./Tabs";
 import DarkModeButton from "./DarkModeButton";
 
-const changePreZIndexFromRNB = (zIndex: string = "0") => {
-  const preElements = document.querySelectorAll('pre[class*="language-"]');
-  preElements.forEach((item) => {
-    const element = item as HTMLPreElement;
-    element.style.zIndex = zIndex;
-  });
-};
-
 const RNB = () => {
-  const timerRef = useRef<NodeJS.Timeout>();
-  const drawerChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const { checked } = event.target;
-    if (checked) {
-      changePreZIndexFromRNB("-999");
-    } else {
-      timerRef.current = setTimeout(changePreZIndexFromRNB, 500);
-    }
-  };
-
-  useEffect(() => {
-    // unmount시 해제
-    return () => {
-      console.log("unmount");
-      clearTimeout(timerRef.current);
-    };
-  }, []);
   return (
     <div className="drawer drawer-end lg:hidden">
-      <input
-        id="my-drawer-3"
-        type="checkbox"
-        className="drawer-toggle"
-        onChange={drawerChangeHandler}
-      />
+      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <div className=" w-full p-0">

@@ -7,7 +7,7 @@ import RNB from "../Header/RNB";
 
 const Header = () => {
   return (
-    <header className=" border-gray-200 px-4 lg:px-6 py-3.5  max-h-[68px] w-full sticky top-0 bg-base-100">
+    <header className=" border-gray-200 px-4 lg:px-6 py-3.5  max-h-[68px] w-full sticky top-0 backdrop-blur-[10px]">
       <div className="flex flex-wrap justify-between items-center ">
         <div className="flex gap-3 items-center">
           <Link
