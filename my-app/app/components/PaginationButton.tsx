@@ -18,7 +18,6 @@ const PaginationButton = ({ maxPage }: PagenationButtonProps) => {
       router.push(`/?page=${page}`);
     }
   };
-  console.log(maxPage);
   return (
     <>
       {maxPage > 1 && (
