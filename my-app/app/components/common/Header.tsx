@@ -4,6 +4,7 @@ import PATH from "@/app/constant/path";
 import Link from "next/link";
 import Tabs from "../Header/Tabs";
 import RNB from "../Header/RNB";
+import ProgressBar from "../Header/ProgressBar";
 
 const Header = () => {
   return (
@@ -30,6 +31,7 @@ const Header = () => {
           <RNB />
         </div>
       </div>
+      <ProgressBar />
     </header>
   );
 };
