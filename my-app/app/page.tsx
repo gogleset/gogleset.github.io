@@ -5,16 +5,16 @@ import { frontmatters } from "./util/mdx";
 
 type HomePageProps = {
   searchParams: {
-    page: number;
+    page: string;
     tag: string;
   };
 };
 
 export default async function HomePage({ searchParams }: HomePageProps) {
-  const page = searchParams.page === undefined ? 1 : searchParams.page;
+  const page = searchParams.page === undefined ? 1 : Number(searchParams.page);
   const tag = searchParams?.tag;
   const filteringNumber = 8;
-
+  // console.log("page", page);
   const filteringFrontmatterList = await (
     await frontmatters()
   ).filter((item, index) => {
@@ -26,9 +26,11 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       return item;
     }
   });
+  // console.log(`filteringFrontmatterList:`, filteringFrontmatterList);
   const fileNumber = filteringFrontmatterList.length;
   const minResource = filteringNumber * (page - 1) + (page - 2);
-  const maxResource = filteringNumber * page + (page - 2);
+  const maxResource = filteringNumber * page + (page - 2) - 1;
+  // console.log(minResource, maxResource);
   const pagingFrontmatterList = filteringFrontmatterList.filter(
     (item, index) => {
       if (page === 1) {
@@ -42,9 +44,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       }
     }
   );
-
   const maxPage = Math.ceil(fileNumber / filteringNumber);
-
+  // console.log(pagingFrontmatterList);
   // 8, 16 | 17, 25 | 26, 34;
   return (
     <div className="flex flex-col gap-5 items-center min-h-screen max-lg:min-h-sm max-w-3xl w-full">
@@ -64,7 +65,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         })}
       </div>
       {/* pagination */}
-      <div className="max-w-3xl flex justify-center items-center mb-2 w-full ">
+      <div className="max-w-3xl flex justify-center items-center mb-2 flex-wrap">
         <PaginationButton maxPage={maxPage} />
       </div>
     </div>

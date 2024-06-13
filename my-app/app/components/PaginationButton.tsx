@@ -6,7 +6,7 @@ type PagenationButtonProps = {
 
 const PaginationButton = ({ maxPage }: PagenationButtonProps) => {
   const router = useRouter();
-  let pageParams = Number(useSearchParams().get("page"));
+  let pageParams = Number(useSearchParams().get("page")) || 1;
   let tag = useSearchParams().get("tag");
   if (pageParams === 0) {
     pageParams = 1;
@@ -21,27 +21,26 @@ const PaginationButton = ({ maxPage }: PagenationButtonProps) => {
   console.log(maxPage);
   return (
     <>
-      {maxPage > 1 ? (
+      {maxPage > 1 && (
         <div className="join">
-          {[...Array(maxPage)].map((_, index) => {
-            const page = index + 1;
-            return (
-              <input
-                key={`pagination_button_${page}`}
-                className="join-item btn btn-square"
-                type="radio"
-                name="options"
-                aria-label={`${page}`}
-                defaultChecked={page === pageParams}
-                onClick={() => {
-                  return ButtonOnClickHandler(page);
-                }}
-              />
-            );
-          })}
+          <button
+            className="join-item btn"
+            disabled={pageParams === 1}
+            onClick={() => {
+              ButtonOnClickHandler(pageParams - 1);
+            }}>
+            «
+          </button>
+          <button className="join-item btn">{pageParams}</button>
+          <button
+            className="join-item btn"
+            disabled={maxPage === pageParams}
+            onClick={() => {
+              ButtonOnClickHandler(pageParams + 1);
+            }}>
+            »
+          </button>
         </div>
-      ) : (
-        <></>
       )}
     </>
   );

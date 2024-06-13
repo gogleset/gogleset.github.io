@@ -13,7 +13,7 @@ type PostCardProps = {
 
 const PostCard = ({ frontmatter, key }: PostCardProps) => {
   const router = useRouter();
-  console.log(frontmatter);
+  // console.log(frontmatter);
   // console.log(key, mdx);
   const CardOnClickHandler = () => {
     router.push(frontmatter.path);
