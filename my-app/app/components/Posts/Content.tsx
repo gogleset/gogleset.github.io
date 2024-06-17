@@ -1,4 +1,5 @@
 import { CompileMDXResult } from "next-mdx-remote/rsc";
+import Giscus from "./Giscus";
 
 type PostContentProps<T> = {
   mdx: CompileMDXResult<T>;

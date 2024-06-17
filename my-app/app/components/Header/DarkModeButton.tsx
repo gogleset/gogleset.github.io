@@ -2,20 +2,32 @@
 import { mode, theme } from "@/app/types/style";
 import { getCookie, setCookie } from "@/app/util/cookie";
 import { useEffect, useState } from "react";
-import { myDrawer3Close } from "./Tabs";
 
 const DarkModeButton = () => {
   const [themeState, setThemeState] = useState<mode>();
   const onClickHandler = () => {
     const HTML = document.querySelector("html");
+    // Giscus 설정
+    const iframe = document.querySelector<HTMLIFrameElement>(
+      "iframe.giscus-frame"
+    );
     if (HTML) {
       const theme = HTML.dataset.theme as theme;
       if (theme === "dracula") {
         HTML.setAttribute("data-theme", "cupcake");
         setCookie("theme", "light");
+        // Giscus Theme Handler
+        iframe?.contentWindow?.postMessage(
+          { giscus: { setConfig: { theme: "light_protanopia" } } },
+          "https://giscus.app"
+        );
       } else {
         HTML.setAttribute("data-theme", "dracula");
         setCookie("theme", "dark");
+        iframe?.contentWindow?.postMessage(
+          { giscus: { setConfig: { theme: "noborder_dark" } } },
+          "https://giscus.app"
+        );
       }
     }
   };

@@ -228,3 +228,7 @@ pre[class*="language-"] {
 .token.variable {
   color: #f07178;
 }
+
+.progress {
+  position: unset;
+}

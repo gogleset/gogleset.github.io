@@ -6,6 +6,7 @@ import PostContents from "@/app/components/Posts/Content";
 import PostTitle from "@/app/components/Posts/Title";
 import { myMdx } from "@/app/util/mdx";
 import Image from "next/image";
+import Giscus from "@/app/components/Posts/Giscus";
 
 type PostPageProps = {
   params: { id: string };
@@ -67,11 +68,10 @@ const postPage = async ({ params }: PostPageProps) => {
   return (
     <>
       <PostTitle mdx={mdx} />
-
       {/* <PostSummary mdx={mdx} /> */}
       <PostContents mdx={mdx} />
-
-      <hr className="mt-10" />
+      <hr className="my-10" />
+      <Giscus />
     </>
   );
 };
