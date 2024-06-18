@@ -8,7 +8,7 @@ const nextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   assetPrefix:
     process.env.NODE_ENV === "production"
-      ? "https://gogleset.github.io/blog"
+      ? "https://gogleset.github.io/blog/"
       : "",
   // Optionally, add any other Next.js config below
 };
