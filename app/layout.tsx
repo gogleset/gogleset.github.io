@@ -7,7 +7,8 @@ import Footer from "./components/common/Footer";
 import SearchModalEventListener from "./components/Wrapper/SearchModalEventListener";
 import Layout from "./components/common/Layout";
 import METADATA from "./constant/metadata";
-import Script from "next/script";
+
+import { cookies } from "next/headers";
 
 const { title, description, keywords, openGraph } = METADATA;
 
@@ -28,8 +29,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const theme = cookies().get("theme");
   return (
-    <html lang="ko">
+    <html
+      lang="ko"
+      data-theme={
+        theme === undefined
+          ? "cupcake"
+          : theme.value === "light"
+          ? "cupcake"
+          : "dracula"
+      }>
       <body>
         <SearchModalEventListener>
           <Header />

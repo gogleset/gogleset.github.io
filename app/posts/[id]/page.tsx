@@ -10,6 +10,7 @@ import Giscus from "@/app/components/Posts/Giscus";
 import { readMdfiles } from "@/app/util/file";
 import path from "path";
 
+// export const dynamic = "force-static";
 type PostPageProps = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -63,18 +64,18 @@ const components = {
   },
 };
 
-export async function generateStaticParams() {
-  const filePath = path.join(process.cwd(), "app", "asset");
-  const mdFiles = (await readMdfiles(filePath)).map((item) =>
-    item.replace(".md", "")
-  );
+// export async function generateStaticParams() {
+//   const filePath = path.join(process.cwd(), "app", "asset");
+//   const mdFiles = (await readMdfiles(filePath)).map((item) =>
+//     item.replace(".md", "")
+//   );
 
-  return mdFiles.map((files) => {
-    return { id: files };
-  });
-}
+//   return mdFiles.map((files) => {
+//     return { id: files };
+//   });
+// }
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: PostPageProps) {
   const { id } = params;
   const mdx = await myMdx(id, components);
 
