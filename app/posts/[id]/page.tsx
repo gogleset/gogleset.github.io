@@ -7,6 +7,8 @@ import PostTitle from "@/app/components/Posts/Title";
 import { myMdx } from "@/app/util/mdx";
 import Image from "next/image";
 import Giscus from "@/app/components/Posts/Giscus";
+import { readMdfiles } from "@/app/util/file";
+import path from "path";
 
 type PostPageProps = {
   params: { id: string };
@@ -61,7 +63,18 @@ const components = {
   },
 };
 
-const postPage = async ({ params }: PostPageProps) => {
+export async function generateStaticParams() {
+  const filePath = path.join(process.cwd(), "app", "asset");
+  const mdFiles = (await readMdfiles(filePath)).map((item) =>
+    item.replace(".md", "")
+  );
+
+  return mdFiles.map((files) => {
+    return { id: files };
+  });
+}
+
+export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   const mdx = await myMdx(id, components);
 
@@ -74,6 +87,4 @@ const postPage = async ({ params }: PostPageProps) => {
       <Giscus />
     </>
   );
-};
-
-export default postPage;
+}

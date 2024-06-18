@@ -28,18 +28,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const theme = cookies().get("theme");
+  // const theme = cookies().get("theme");
 
   return (
     <html
       lang="ko"
-      data-theme={
-        theme === undefined
-          ? "cupcake"
-          : theme.value === "light"
-          ? "cupcake"
-          : "dracula"
-      }>
+      // data-theme={
+      //   theme === undefined
+      //     ? "cupcake"
+      //     : theme.value === "light"
+      //     ? "cupcake"
+      //     : "dracula"
+      // }
+    >
       <body>
         <SearchModalEventListener>
           <Header />
