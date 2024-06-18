@@ -35,7 +35,7 @@ const DarkModeButton = () => {
   useLayoutEffect(() => {
     const themeCookie = getCookie("theme") as mode;
     const HTML = document.querySelector("html");
-    console.log(themeCookie, HTML);
+
     if (themeCookie) {
       setThemeState(themeCookie);
       if (HTML) {
