@@ -3,12 +3,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
-import { cookies } from "next/headers";
+
 import SearchModalEventListener from "./components/Wrapper/SearchModalEventListener";
 import Layout from "./components/common/Layout";
 import METADATA from "./constant/metadata";
-
-// export const dynamic = "force-static";
+import Script from "next/script";
 
 const { title, description, keywords, openGraph } = METADATA;
 
@@ -30,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" data-theme={"cupcake"}>
+    <html lang="ko">
       <body>
         <SearchModalEventListener>
           <Header />

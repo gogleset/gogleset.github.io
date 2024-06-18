@@ -15,7 +15,8 @@ const DarkModeButton = () => {
       const theme = HTML.dataset.theme as theme;
       if (theme === "dracula") {
         HTML.setAttribute("data-theme", "cupcake");
-        setCookie("theme", "light");
+        // setCookie("theme", "light");
+        localStorage.setItem("theme", "light");
         // Giscus Theme Handler
         iframe?.contentWindow?.postMessage(
           { giscus: { setConfig: { theme: "light_protanopia" } } },
@@ -23,7 +24,8 @@ const DarkModeButton = () => {
         );
       } else {
         HTML.setAttribute("data-theme", "dracula");
-        setCookie("theme", "dark");
+        // setCookie("theme", "dark");
+        localStorage.setItem("theme", "dark");
         iframe?.contentWindow?.postMessage(
           { giscus: { setConfig: { theme: "noborder_dark" } } },
           "https://giscus.app"
@@ -33,17 +35,9 @@ const DarkModeButton = () => {
   };
 
   useLayoutEffect(() => {
-    const themeCookie = getCookie("theme") as mode;
-    const HTML = document.querySelector("html");
-
+    const themeCookie = localStorage.getItem("theme") as mode;
     if (themeCookie) {
       setThemeState(themeCookie);
-      if (HTML) {
-        HTML.setAttribute(
-          "data-theme",
-          themeCookie === "dark" ? "dracula" : "cupcake"
-        );
-      }
     } else {
       setThemeState("light");
     }
