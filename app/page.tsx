@@ -2,8 +2,6 @@ import PostCard from "./components/PostCard";
 import PaginationButton from "./components/PaginationButton";
 import { frontmatters } from "./util/mdx";
 
-export const dynamic = "force-static";
-
 type HomePageProps = {
   searchParams: {
     page: string;
