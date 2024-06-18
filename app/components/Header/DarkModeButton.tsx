@@ -1,7 +1,7 @@
 "use client";
 import { mode, theme } from "@/app/types/style";
 import { getCookie, setCookie } from "@/app/util/cookie";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 const DarkModeButton = () => {
   const [themeState, setThemeState] = useState<mode>();
@@ -32,10 +32,18 @@ const DarkModeButton = () => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const themeCookie = getCookie("theme") as mode;
+    const HTML = document.querySelector("html");
+    console.log(themeCookie, HTML);
     if (themeCookie) {
       setThemeState(themeCookie);
+      if (HTML) {
+        HTML.setAttribute(
+          "data-theme",
+          themeCookie === "dark" ? "dracula" : "cupcake"
+        );
+      }
     } else {
       setThemeState("light");
     }

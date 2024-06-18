@@ -10,7 +10,7 @@ export default function Giscus() {
   useEffect(
     () => {
       //   initialize theme
-      const theme: mode = getCookie("theme") as mode || "light";
+      const theme: mode = (getCookie("theme") as mode) || "light_protanopia";
       if (!ref.current || ref.current.hasChildNodes()) return;
       const scriptElem = document.createElement("script");
       scriptElem.src = "https://giscus.app/client.js";
