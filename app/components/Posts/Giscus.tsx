@@ -16,7 +16,7 @@ export default function Giscus() {
       scriptElem.src = "https://giscus.app/client.js";
       scriptElem.async = true;
       scriptElem.crossOrigin = "anonymous";
-      scriptElem.setAttribute("data-repo", "gogleset/blog");
+      scriptElem.setAttribute("data-repo", "gogleset/gogleset.github.io");
       scriptElem.setAttribute("data-repo-id", "R_kgDOLbXQMQ");
       scriptElem.setAttribute("data-category", "Announcements");
       scriptElem.setAttribute("data-category-id", "DIC_kwDOLbXQMc4CgIZ0");
@@ -27,6 +27,7 @@ export default function Giscus() {
       scriptElem.setAttribute("data-input-position", "bottom");
       scriptElem.setAttribute("data-theme", theme);
       scriptElem.setAttribute("data-lang", "ko");
+      scriptElem.setAttribute("data-loading", "lazy");
       ref.current.appendChild(scriptElem);
     },
     [
