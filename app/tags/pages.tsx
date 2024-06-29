@@ -30,7 +30,8 @@ const page = async () => {
           return (
             <p
               key={`${item}_${index}`}
-              className={`badge badge-lg cursor-pointer font-semibold ${randomBadgeList[randomNumber]}`}>
+              className={`badge badge-lg cursor-pointer font-semibold ${randomBadgeList[randomNumber]}`}
+            >
               <Link href={`/?tag=${item}`}>{item}</Link>
             </p>
           );

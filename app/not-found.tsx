@@ -1,4 +1,5 @@
 import Link from "next/link";
+export const dynamic = "force-static";
 
 export default function NotFound() {
   return (
@@ -12,7 +13,8 @@ export default function NotFound() {
               viewBox="0 0 24 24"
               strokeWidth="2"
               stroke="currentColor"
-              className="w-6 h-6">
+              className="w-6 h-6"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

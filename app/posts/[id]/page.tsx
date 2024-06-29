@@ -64,16 +64,16 @@ const components = {
   },
 };
 
-// export async function generateStaticParams() {
-//   const filePath = path.join(process.cwd(), "app", "asset");
-//   const mdFiles = (await readMdfiles(filePath)).map((item) =>
-//     item.replace(".md", "")
-//   );
+export async function generateStaticParams() {
+  const filePath = path.join(process.cwd(), "app", "asset");
+  const mdFiles = (await readMdfiles(filePath)).map((item) =>
+    item.replace(".md", "")
+  );
 
-//   return mdFiles.map((files) => {
-//     return { id: files };
-//   });
-// }
+  return mdFiles.map((files) => {
+    return { id: files };
+  });
+}
 
 export default async function Page({ params }: PostPageProps) {
   const { id } = params;

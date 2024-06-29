@@ -1,9 +1,9 @@
 import DarkModeButton from "../Header/DarkModeButton";
-import SearchButton from "../Header/SearchButton";
 import PATH from "@/app/constant/path";
 import Link from "next/link";
 import Tabs from "../Header/Tabs";
 import RNB from "../Header/RNB";
+
 import ProgressBar from "../Header/ProgressBar";
 
 const Header = () => {
@@ -13,19 +13,21 @@ const Header = () => {
         <div className="flex gap-3 items-center">
           <Link
             href={PATH.HOME}
-            className="self-center text-xl font-semibold whitespace-nowrap cursor-pointer">
+            className="self-center text-xl font-semibold whitespace-nowrap cursor-pointer"
+          >
             gogleset's note
           </Link>
           <div className="divider divider-horizontal w-2 max-lg:hidden" />
+
           <nav className="max-lg:hidden">
             <Tabs />
           </nav>
         </div>
 
         <div className="flex gap-4 items-center justify-center">
-          <SearchButton />
+          {/* <SearchButton /> */}
 
-          <div className="max-lg:hidden flex">
+          <div className="flex max-lg:hidden">
             <DarkModeButton />
           </div>
           <RNB />

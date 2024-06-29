@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import PATH from "@/app/constant/path";
+
 type TabsProps = {
   col?: boolean;
 };
@@ -18,15 +20,10 @@ const Tabs = ({ col }: TabsProps) => {
     <ul className={`flex ${col ? "flex-col" : ""} gap-3`}>
       <li
         className="self-center text-lg font-semibold whitespace-nowrap cursor-pointer"
-        onClick={myDrawer3Close}>
-        <Link href="/tags">Tags</Link>
+        onClick={myDrawer3Close}
+      >
+        <Link href={PATH.ABOUT}>About</Link>
       </li>
-
-      {/* <li
-        className="self-center text-lg font-semibold whitespace-nowrap cursor-pointer"
-        onClick={myDrawer3Close}>
-        <Link href="/about">About</Link>
-      </li> */}
     </ul>
   );
 };
