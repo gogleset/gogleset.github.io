@@ -24,7 +24,7 @@ export default async function sitemap({
   const frontmatter = await frontmatters();
 
   return frontmatter.map((frontmatter) => ({
-    url: `${BASE_URL}/${frontmatter.filename}`,
+    url: `${BASE_URL}/posts/${frontmatter.filename}`,
     lastModified: frontmatter.date,
   }));
 }
