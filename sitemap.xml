@@ -2,14 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://gogleset.github.io</loc>
-<lastmod>2024-07-01T02:23:01.830Z</lastmod>
+<lastmod>2024-07-01T02:52:07.733Z</lastmod>
 <changefreq>yearly</changefreq>
 <priority>1</priority>
 </url>
 <url>
 <loc>https://gogleset.github.io/post</loc>
-<lastmod>2024-07-01T02:23:01.830Z</lastmod>
+<lastmod>2024-07-01T02:52:07.733Z</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.8</priority>
+</url>
+<url>
+<loc>https://gogleset.github.io/about</loc>
+<lastmod>2024-07-01T02:52:07.733Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.6</priority>
 </url>
 </urlset>
