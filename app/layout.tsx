@@ -15,12 +15,16 @@ const { title, description, keywords, openGraph } = METADATA;
 export const metadata: Metadata = {
   title,
   description,
+
   keywords,
   openGraph,
   icons: {
     icon: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
     // other: "/android-chrome-192x192.png",
+  },
+  verification: {
+    google: "1U63Nik4z_XOMC-JAv8tDOISqLYGH8G0nmWFZ4GOohI",
   },
 };
 
