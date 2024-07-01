@@ -13,7 +13,7 @@ export type Frontmatter = {
   description: string;
   date: string;
   tag: string[];
-  path: string;
+  filename: string;
 };
 export default function PostContent({ mdx }: PostContentProps<Frontmatter>) {
   // MDX text - can be from a local file, database, CMS, fetch, anywhere...

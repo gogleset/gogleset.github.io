@@ -75,6 +75,7 @@ export async function generateStaticParams() {
   });
 }
 
+
 export default async function Page({ params }: PostPageProps) {
   const { id } = params;
   const mdx = await myMdx(id, components);

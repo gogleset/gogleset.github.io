@@ -92,7 +92,7 @@ const SearchModal = ({ frontmatterList }: SearchModalProps) => {
         {filter.map((item, index) => {
           return (
             <li key={`${item}_${index}`} onClick={closeModal}>
-              <Link href={item.path}>{item.title}</Link>
+              <Link href={`/posts/${item.filename}`}>{item.title}</Link>
             </li>
           );
         })}

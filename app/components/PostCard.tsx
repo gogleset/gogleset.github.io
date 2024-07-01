@@ -16,7 +16,7 @@ const PostCard = ({ frontmatter, key }: PostCardProps) => {
   // console.log(frontmatter);
   // console.log(key, mdx);
   const CardOnClickHandler = () => {
-    router.push(frontmatter.path);
+    router.push(`/posts/${frontmatter.filename}`);
   };
   return (
     <Card key={key} onClick={CardOnClickHandler} style={{ cursor: "pointer" }}>
