@@ -18,6 +18,20 @@ body * {
 .prose a {
   /* @apply transition-all; */
 }
+.prose p {
+  margin: 10px 0px 0px 0px;
+}
+.prose h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 10px 0px 0px 0px !important;
+}
+.prose hr {
+  margin: 20px 0px;
+}
 code[class*="language-"],
 pre[class*="language-"] {
   text-align: left;
