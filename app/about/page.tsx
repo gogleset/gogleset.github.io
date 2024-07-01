@@ -40,7 +40,7 @@ const page = () => {
             <time className="font-mono italic">2023.07 ~ 2023.10</time>
             <div className="text-lg font-black">CoinPlug corp. 인턴십</div>
             <p>1. Next.js (App route) 관리자 페이지 구축 </p>
-            <p>2. EIP-4361을 기반 SIWE 지갑 로그인 구현</p>
+            <p>2. EIP-4361 기반 SIWE 지갑 로그인 구현</p>
             <p>3. React 15 ver. Class Component 유지보수</p>
             <p>4. Next.js(App route) 팀 교육 자료 배포</p>
             <p>5. React 기본 팀 내 교육 자료 배포</p>

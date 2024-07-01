@@ -1,8 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @import url(./code.css);
-@import url(./prose.css); */
+/* @import url(./code.css); */
+/* @import url(./prose.css); */
 
 html {
   scroll-behavior: smooth;
@@ -19,18 +19,25 @@ body * {
   /* @apply transition-all; */
 }
 .prose p {
-  margin: 10px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
-.prose h1,
-h2,
+.prose h1 {
+  margin: 40px 0px 20px 0px;
+}
+.prose h2,
 h3,
 h4,
 h5,
 h6 {
-  margin: 10px 0px 0px 0px !important;
+  margin: 30px 0px 15px 0px !important;
 }
 .prose hr {
   margin: 20px 0px;
+}
+.prose ul,
+ol,
+li {
+  margin: 0px 0px !important;
 }
 code[class*="language-"],
 pre[class*="language-"] {
