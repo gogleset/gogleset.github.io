@@ -1,5 +1,6 @@
 import { CompileMDXResult } from "next-mdx-remote/rsc";
-import Giscus from "./Giscus";
+
+import { MetadataRoute } from "next";
 
 type PostContentProps<T> = {
   mdx: CompileMDXResult<T>;
@@ -11,9 +12,20 @@ export type Frontmatter = {
   author: string;
   categories: string;
   description: string;
-  date: string;
+  date: Date | string;
   tag: string[];
   filename: string;
+  sitemap: {
+    changefreq:
+      | "yearly"
+      | "weekly"
+      | "always"
+      | "hourly"
+      | "daily"
+      | "monthly"
+      | "never";
+    priority: number;
+  };
 };
 export default function PostContent({ mdx }: PostContentProps<Frontmatter>) {
   // MDX text - can be from a local file, database, CMS, fetch, anywhere...

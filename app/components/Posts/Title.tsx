@@ -17,7 +17,9 @@ const PostTitle = ({ mdx }: Props<Frontmatter>) => {
           {frontmatter.title}
         </h1>
         <div className="flex flex-col items-center justify-center gap-1">
-          <span className="text-gray">{extractDate(frontmatter.date)}</span>
+          <span className="text-gray">
+            {extractDate(String(frontmatter.date))}
+          </span>
           <div className="flex gap-1 ">
             {frontmatter.tag.map((item, index) => {
               const key = `${item}_${index}`;

@@ -1,29 +1,24 @@
+import { BASE_URL } from "@/app/constant/path";
+import { frontmatters } from "@/app/util/mdx";
 import { MetadataRoute } from "next";
-import { BASE_URL } from "./constant/path";
-import path from "path";
-import { readMdfiles } from "./util/file";
+import type { Sitemap } from "./types/sitemaps";
 
-// export async function generateSitemaps() {
-//   // Fetch the total number of products and calculate the number of sitemaps needed
-//   const filePath = path.join(process.cwd(), "app", "asset");
-//   const mdFiles = (await readMdfiles(filePath)).map((item) =>
-//     item.replace(".md", "")
-//   );
-
-//   return mdFiles.map((files) => {
-//     return { id: files };
-//   });
-// }
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const dynamicSitemap: Sitemap[] = (await frontmatters()).map(
+    (frontmatter) => ({
+      url: `${BASE_URL}/posts/${frontmatter.filename}`,
+      lastModified: frontmatter.date,
+      changeFrequency: frontmatter.sitemap.changefreq,
+      priority: frontmatter.sitemap.priority,
+    })
+  );
+  const staticSitemap: Sitemap[] = [
     {
       url: BASE_URL,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 1,
     },
-
     {
       url: BASE_URL + "/about",
       lastModified: new Date(),
@@ -31,4 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
   ];
+
+  return staticSitemap.concat(dynamicSitemap);
 }
