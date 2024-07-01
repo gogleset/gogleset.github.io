@@ -1,10 +1,10 @@
 "use client";
 import { mode, theme } from "@/app/types/style";
-import { getCookie, setCookie } from "@/app/util/cookie";
+
 import { useLayoutEffect, useState } from "react";
 
 const DarkModeButton = () => {
-  const [themeState, setThemeState] = useState<mode>();
+  const [themeState, setThemeState] = useState<mode>("light");
   const onClickHandler = () => {
     const HTML = document.querySelector("html");
     // Giscus 설정
@@ -13,7 +13,8 @@ const DarkModeButton = () => {
     );
     if (HTML) {
       const theme = HTML.dataset.theme as theme;
-      if (theme === "dracula") {
+      console.log(theme);
+      if (theme === "dracula" || theme === undefined) {
         HTML.setAttribute("data-theme", "cupcake");
         // setCookie("theme", "light");
         localStorage.setItem("theme", "light");
@@ -34,14 +35,6 @@ const DarkModeButton = () => {
     }
   };
 
-  useLayoutEffect(() => {
-    const themeCookie = localStorage.getItem("theme") as mode;
-    if (themeCookie) {
-      setThemeState(themeCookie);
-    } else {
-      setThemeState("light");
-    }
-  }, []);
   return (
     <label className="swap ">
       {/* this hidden checkbox controls the state */}

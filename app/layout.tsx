@@ -33,6 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
+      data-theme="cupcake"
       // data-theme={
       //   theme === undefined
       //     ? "cupcake"
