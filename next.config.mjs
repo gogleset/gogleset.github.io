@@ -8,6 +8,7 @@ const nextConfig = {
   assetPrefix:
     process.env.NODE_ENV === "production" ? "https://gogleset.github.io/" : "",
   // Optionally, add any other Next.js config below
+  images: { unoptimized: true },
 };
 
 if (process.env.NEXT_PUBLIC_NODE_ENV === "prod") {

@@ -1,6 +1,6 @@
 "use client";
 
-import { mode } from "@/app/types/style";
+import { mode, theme } from "@/app/types/style";
 import { getCookie } from "@/app/util/cookie";
 import { useEffect, useRef, useState } from "react";
 
@@ -12,6 +12,13 @@ export default function Giscus() {
       //   initialize theme
       // const theme: mode = (getCookie("theme") as mode) || "light_protanopia";
       // console.log(`theme: ${theme}`);
+      const HTML = document.querySelector("html");
+
+      const theme =
+        (HTML?.dataset.theme as theme) === "cupcake"
+          ? "light_protanopia"
+          : "noborder_dark";
+
       if (!ref.current || ref.current.hasChildNodes()) return;
       const scriptElem = document.createElement("script");
       scriptElem.src = "https://giscus.app/client.js";
@@ -26,7 +33,7 @@ export default function Giscus() {
       scriptElem.setAttribute("data-reactions-enabled", "1");
       scriptElem.setAttribute("data-emit-metadata", "0");
       scriptElem.setAttribute("data-input-position", "bottom");
-      scriptElem.setAttribute("data-theme", "light_protanopia");
+      scriptElem.setAttribute("data-theme", theme);
       scriptElem.setAttribute("data-lang", "ko");
       scriptElem.setAttribute("data-loading", "lazy");
       ref.current.appendChild(scriptElem);

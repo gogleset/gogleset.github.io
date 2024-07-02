@@ -9,6 +9,7 @@ import Image from "next/image";
 import Giscus from "@/app/components/Posts/Giscus";
 import { readMdfiles } from "@/app/util/file";
 import path from "path";
+import { BASE_URL } from "@/app/constant/path";
 
 // export const dynamic = "force-static";
 type PostPageProps = {
@@ -34,6 +35,9 @@ export async function generateMetadata(
     keywords: `gogleset,${frontmatter.tag.map((tag) => tag)}`,
     openGraph: {
       title: frontmatter.title,
+      type: "website",
+      description: frontmatter.description,
+      siteName: BASE_URL,
       // images: ["/some-specific-page-image.jpg", ...previousImages],
     },
   };
@@ -74,7 +78,6 @@ export async function generateStaticParams() {
     return { id: files };
   });
 }
-
 
 export default async function Page({ params }: PostPageProps) {
   const { id } = params;

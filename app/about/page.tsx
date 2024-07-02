@@ -1,12 +1,25 @@
+import { Metadata } from "next";
+import Image from "next/image";
 import React from "react";
-// export const dynamic = "force-static";
+import METADATA from "../constant/metadata";
+const { title, description, keywords, openGraph } = METADATA;
 
+// export const dynamic = "force-static";
+export const metadata: Metadata = {
+  keywords: keywords + ", about",
+  openGraph: { ...openGraph, description: "about me (gogleset)" },
+  icons: {
+    icon: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+    // other: "/android-chrome-192x192.png",
+  },
+};
 const page = () => {
   return (
     <div className="flex flex-col max-lg:py-5 max-lg:min-h-sm max-w-3xl w-full max-lg:px-10 z-[-999] min-h-screen gap-4 items-center">
       <div className="avatar ">
         <div className="w-24 rounded">
-          <img src="/avatar.png" />
+          <Image alt="avatar" src="/avatar.png" width={50} height={50} />
         </div>
       </div>
       <div className="flex flex-col gap-3 items-center">
