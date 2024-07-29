@@ -16,13 +16,15 @@ export const myDrawer3Close = () => {
 };
 
 const Tabs = ({ col }: TabsProps) => {
+  const LinkWrapperClassName =
+    "self-center text-lg font-semibold whitespace-nowrap cursor-pointer";
   return (
     <ul className={`flex ${col ? "flex-col" : ""} gap-3`}>
-      <li
-        className="self-center text-lg font-semibold whitespace-nowrap cursor-pointer"
-        onClick={myDrawer3Close}
-      >
+      <li className={LinkWrapperClassName} onClick={myDrawer3Close}>
         <Link href={PATH.ABOUT}>About</Link>
+      </li>
+      <li className={LinkWrapperClassName} onClick={myDrawer3Close}>
+        <Link href={PATH.TAG}>Tags</Link>
       </li>
     </ul>
   );

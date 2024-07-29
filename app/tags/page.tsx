@@ -3,6 +3,8 @@ import { filteringTags, frontmatters } from "../util/mdx";
 import { getRandomConstant } from "../util/number";
 import Link from "next/link";
 
+export const dynamic = "force-static";
+
 const randomBadgeList = [
   "badge-outline",
   "badge-neutral",
@@ -30,9 +32,8 @@ const page = async () => {
           return (
             <p
               key={`${item}_${index}`}
-              className={`badge badge-lg cursor-pointer font-semibold ${randomBadgeList[randomNumber]}`}
-            >
-              <Link href={`/?tag=${item}`}>{item}</Link>
+              className={`badge badge-lg cursor-pointer font-semibold ${randomBadgeList[randomNumber]}`}>
+              <Link href={`/tags/${item}`}>{item}</Link>
             </p>
           );
         })}
