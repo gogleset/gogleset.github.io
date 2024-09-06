@@ -3,7 +3,9 @@
 @tailwind utilities;
 /* @import url(./code.css); */
 /* @import url(./prose.css); */
-
+:root {
+  --block-radius: 0.375rem;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -18,6 +20,14 @@ body * {
 .prose a {
   /* @apply transition-all; */
 }
+
+.prose aside {
+  border-radius: var(--block-radius);
+  padding: 1em 1em;
+  margin: 10px 0px;
+  @apply bg-base-300;
+}
+
 .prose p {
   margin: 0px 0px 0px 0px;
 }
@@ -29,8 +39,9 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 10px 0px 0px 0px !important;
+  margin: 10px 0px 2px 0px !important;
 }
+
 .prose hr {
   margin: 20px 0px;
 }
@@ -38,48 +49,6 @@ h6 {
 ol,
 li {
   margin: 0px 0px 5px 0px !important;
-}
-code[class*="language-"],
-pre[class*="language-"] {
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  color: #c3cee3;
-  background: #263238;
-  font-family: Roboto Mono, monospace;
-  font-size: 1em;
-  line-height: 1.5em;
-
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-code[class*="language-"]::-moz-selection,
-pre[class*="language-"]::-moz-selection,
-code[class*="language-"] ::-moz-selection,
-pre[class*="language-"] ::-moz-selection {
-  background: #363636;
-}
-
-code[class*="language-"]::selection,
-pre[class*="language-"]::selection,
-code[class*="language-"] ::selection,
-pre[class*="language-"] ::selection {
-  background: #363636;
-}
-
-:not(pre) > code[class*="language-"] {
-  white-space: normal;
-  border-radius: 0.2em;
-  padding: 0.1em;
 }
 
 pre[class*="language-"] {
