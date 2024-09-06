@@ -19,7 +19,7 @@ const Tabs = ({ col }: TabsProps) => {
   const LinkWrapperClassName =
     "self-center text-lg font-semibold whitespace-nowrap cursor-pointer";
   return (
-    <ul className={`flex ${col ? "flex-col" : ""} gap-3`}>
+    <ul className={`flex ${col ? "flex-col" : ""} gap-3 `}>
       <li className={LinkWrapperClassName} onClick={myDrawer3Close}>
         <Link href={PATH.ABOUT}>About</Link>
       </li>

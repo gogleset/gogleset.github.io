@@ -14,12 +14,6 @@ h2,
 h3 {
   scroll-margin-top: 80px;
 }
-body * {
-  /* @apply transition-colors duration-200; */
-}
-.prose a {
-  /* @apply transition-all; */
-}
 
 .prose aside {
   border-radius: var(--block-radius);
@@ -28,27 +22,28 @@ body * {
   @apply bg-base-300;
 }
 
-.prose p {
-  margin: 0px 0px 0px 0px;
-}
-.prose h1 {
-  margin: 40px 0px 10px 0px;
-}
-.prose h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 10px 0px 2px 0px !important;
-}
-
-.prose hr {
-  margin: 20px 0px;
-}
-.prose ul,
-ol,
-li {
-  margin: 0px 0px 5px 0px !important;
+.prose {
+  p {
+    margin: 0px 0px 0px 0px;
+  }
+  h1 {
+    margin: 40px 0px 10px 0px;
+  }
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 10px 0px 2px 0px !important;
+  }
+  hr {
+    margin: 20px 0px;
+  }
+  ul,
+  ol,
+  li {
+    margin: 0px 0px 5px 0px !important;
+  }
 }
 
 pre[class*="language-"] {

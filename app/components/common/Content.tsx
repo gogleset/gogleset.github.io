@@ -10,7 +10,7 @@ type contentType = {
 
 const Content = ({ title, fileNumber, fileList }: contentType) => {
   return (
-    <div className="flex flex-col gap-5 items-center min-h-screen max-lg:min-h-sm max-w-3xl w-full">
+    <div className="flex flex-col gap-5 items-center min-h-screen max-lg:min-h-sm w-full">
       {/* heading */}
       <div className="w-full flex items-end gap-2">
         <h1 className="font-semibold text-2xl">{title}</h1>

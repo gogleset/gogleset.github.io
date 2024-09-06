@@ -8,8 +8,6 @@ import SearchModalEventListener from "./components/Wrapper/SearchModalEventListe
 import Layout from "./components/common/Layout";
 import METADATA from "./constant/metadata";
 
-// import { cookies } from "next/headers";
-
 const { title, description, keywords, openGraph } = METADATA;
 
 export const metadata: Metadata = {
@@ -30,19 +28,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const theme = cookies().get("theme");
   return (
-    <html
-      lang="ko"
-      data-theme="cupcake"
-      // data-theme={
-      //   theme === undefined
-      //     ? "cupcake"
-      //     : theme.value === "light"
-      //     ? "cupcake"
-      //     : "dracula"
-      // }
-    >
+    <html lang="ko" data-theme="cupcake">
       <body>
         <SearchModalEventListener>
           <Header />
