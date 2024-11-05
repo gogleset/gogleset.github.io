@@ -7,6 +7,7 @@ import Footer from "./components/common/Footer";
 import SearchModalEventListener from "./components/Wrapper/SearchModalEventListener";
 import Layout from "./components/common/Layout";
 import METADATA from "./constant/metadata";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const { title, description, keywords, openGraph } = METADATA;
 
@@ -37,6 +38,7 @@ export default function RootLayout({
           <Footer />
         </SearchModalEventListener>
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS!} />
     </html>
   );
 }
