@@ -38,7 +38,9 @@ export default function RootLayout({
           <Footer />
         </SearchModalEventListener>
       </body>
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS!} />
+      {process.env.NODE_ENV === "production" && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS!} />
+      )}
     </html>
   );
 }
