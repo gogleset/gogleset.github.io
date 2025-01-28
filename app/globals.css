@@ -217,3 +217,7 @@ pre[class*="language-"] {
 .progress {
   position: unset;
 }
+
+blockquote {
+  word-wrap: break-word;
+}
