@@ -9,6 +9,9 @@ type contentType = {
 };
 
 const Content = ({ title, fileNumber, fileList }: contentType) => {
+  const sortRecentFileList = fileList.sort(
+    (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
+  );
   return (
     <div className="flex flex-col gap-5 items-center min-h-screen max-lg:min-h-sm w-full">
       {/* heading */}
@@ -18,8 +21,7 @@ const Content = ({ title, fileNumber, fileList }: contentType) => {
       </div>
       {/* posting */}
       <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-4 w-full">
-        {fileList.map((item, index) => {
-          // console.log(item.frontmatter.tag);
+        {sortRecentFileList.map((item, index) => {
           const key = `${JSON.stringify(item.title)}_${index}`;
           return <PostCard frontmatter={item} key={key} />;
         })}
