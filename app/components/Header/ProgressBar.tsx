@@ -28,9 +28,10 @@ const ProgressBar = () => {
     <>
       {isPathPosts ? (
         <progress
-          className="progress progress-primary w-full"
+          className="progress progress-primary w-full backdrop-blur-[10px]"
           value={percentValueState}
-          max="100"></progress>
+          max="100"
+        ></progress>
       ) : (
         <></>
       )}

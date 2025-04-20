@@ -23,5 +23,20 @@ const config: Config = {
     logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
     themeRoot: ":root", // The element that receives theme color CSS variables
   },
+  theme: {
+    extend: {
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            "pre, pre code": {
+              whiteSpace: "pre-wrap", // 줄바꿈 허용
+              wordBreak: "break-word", // 긴 단어 줄바꿈
+              overflowWrap: "break-word",
+            },
+          },
+        },
+      }),
+    },
+  },
 };
 export default config;
